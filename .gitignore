@@ -218,3 +218,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 collab-server/node_modules
+.vscode/
+.claude/
