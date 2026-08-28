@@ -1,0 +1,22 @@
+{
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "/frontend/Dockerfile",
+    "watchPatterns": [
+      "public/**",
+      "src/**",
+      "Dockerfile",
+      "jsconfig.json",
+      "next.config.js",
+      "package-lock.json",
+      "package.json",
+      "postcss.config.js",
+      "railway.toml",
+      "tailwind.config.js",
+      "/shared/**"
+    ]
+  },
+  "deploy": {
+    "healthcheckPath": "/healthz"
+  }
+}

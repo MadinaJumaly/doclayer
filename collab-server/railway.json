@@ -1,0 +1,17 @@
+{
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "/collab-server/Dockerfile",
+    "watchPatterns": [
+      "server.js",
+      "src/**",
+      "package.json",
+      "Dockerfile",
+      "/shared/**"
+    ]
+  },
+  "deploy": {
+    "restartPolicyType": "always",
+    "restartPolicyMaxRetries": 10
+  }
+}

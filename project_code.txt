@@ -1,0 +1,4649 @@
+===== ./frontend/jsconfig.json =====
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+
+===== ./frontend/tailwind.config.js =====
+/** @type {import('tailwindcss').Config} */
+
+const { fontFamily } = require("tailwindcss/defaultTheme")
+
+
+
+module.exports = {
+  darkMode: ["class"],
+  content: [
+    './pages/**/*.{js,jsx}',
+    './components/**/*.{js,jsx}',
+    './app/**/*.{js,jsx}',
+    './src/**/*.{js,jsx}',
+  ],
+  prefix: "",
+  theme: {
+  	container: {
+  		center: true,
+  		padding: '2rem',
+  		screens: {
+  			'2xl': '1400px'
+  		}
+  	},
+  	extend: {
+  		fontFamily: {
+  			sans: [
+  				'var(--font-sans)',
+                    ...fontFamily.sans
+                ]
+  		},
+  		colors: {
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			primary: {
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			secondary: {
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			}
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		}
+  	}
+  },
+  plugins: [
+	require("tailwindcss-animate"),
+	require("@tailwindcss/typography")
+],
+}
+===== ./frontend/postcss.config.mjs =====
+/** @type {import('postcss-load-config').Config} */
+const config = {
+  plugins: {
+    tailwindcss: {},
+  },
+};
+
+export default config;
+
+===== ./frontend/next.config.mjs =====
+/** @type {import('next').NextConfig} */
+const nextConfig = {};
+
+export default nextConfig;
+
+===== ./frontend/package.json =====
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "rm -rf .next && next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-react": "^9.5.0",
+    "@radix-ui/react-dialog": "^1.1.5",
+    "@radix-ui/react-dropdown-menu": "^2.1.5",
+    "@radix-ui/react-icons": "^1.3.2",
+    "@radix-ui/react-label": "^2.1.1",
+    "@radix-ui/react-slot": "^1.1.1",
+    "@tailwindcss/typography": "^0.5.16",
+    "ckeditor5": "^44.3.0",
+    "ckeditor5-premium-features": "^44.3.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.474.0",
+    "next": "15.1.6",
+    "next-themes": "^0.4.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "swr": "^2.3.0",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "eslint": "^9.19.0",
+    "eslint-config-next": "15.1.6",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17"
+  }
+}
+
+===== ./frontend/components.json =====
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": false,
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "src/app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "iconLibrary": "lucide"
+}
+===== ./frontend/railway.demo.json =====
+{
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "/frontend/Dockerfile.demo"
+  },
+  "deploy": {
+    "healthcheckPath": "/healthz"
+  }
+}
+===== ./frontend/eslint.config.mjs =====
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import { FlatCompat } from "@eslint/eslintrc";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const eslintConfig = [...compat.extends("next/core-web-vitals")];
+
+export default eslintConfig;
+
+===== ./frontend/railway.json =====
+{
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "./Dockerfile",
+    "watchPatterns": [
+      "public/**",
+      "src/**",
+      "Dockerfile",
+      "jsconfig.json",
+      "next.config.js",
+      "package-lock.json",
+      "package.json",
+      "postcss.config.js",
+      "railway.toml",
+      "tailwind.config.js"
+    ]
+  },
+  "deploy": {
+    "healthcheckPath": "/healthz"
+  }
+}
+===== ./frontend/src/app/layout.js =====
+import { Suspense } from "react";
+
+import { Inter as FontSans } from "next/font/google"
+
+import { APIProvider } from "@/components/apiProvider";
+import { AuthProvider } from "@/components/authProvider";
+import { ThemeProvider } from "@/components/themeProvider";
+import BaseLayout from "@/components/layout/BaseLayout";
+import { cn } from "@/lib/utils"
+
+import "./globals.css";
+ 
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
+
+export const metadata = {
+  title: "AITU-diploma",
+  description: "AITU-diploma",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}>
+          <Suspense fallback={<div>Loading...</div>}>
+          <ThemeProvider 
+              attribute="class"
+              defaultTheme="light"
+          >
+          <APIProvider>
+          <AuthProvider>
+            <BaseLayout className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col bg-muted/40">
+                {children}
+            </BaseLayout>
+          </AuthProvider>
+          </APIProvider>
+          </ThemeProvider>
+        </Suspense>
+      </body>
+    </html>
+  );
+}
+===== ./frontend/src/app/page.js =====
+"use client"
+
+import { useAuth } from "@/components/authProvider"; // AuthProvider
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
+
+
+
+export default function Home() {
+  const { isAuthenticated, is_admin, user } = useAuth();
+  return (
+    <div className="grid grid-rows-[auto_1fr_auto] items-start justify-items-center min-h-screen p-2 pb-20 gap-8 sm:p-10 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col gap-8 items-center sm:items-start">
+      {isAuthenticated && is_admin && (
+          <Button variant='outline' asChild>
+            <Link href='/docs/create'>Create new doc</Link>
+          </Button>
+        )}
+      {isAuthenticated && user?.role !== "user" && (
+          <Button asChild>
+            <Link href='/docs'>View Docs</Link>
+          </Button>
+        )}
+        </main>
+      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+  
+      </footer>
+    </div>
+  );
+}
+
+===== ./frontend/src/app/google/GoogleLoginButton.jsx =====
+"use client"
+import { useState } from 'react'
+
+export default function GoogleLoginButton() {
+    const [isLoading, setIsLoading] = useState(false)
+
+    const handleGoogleLogin = async () => {
+        try {
+            setIsLoading(true)
+            const response = await fetch('/api/google/login')
+            const data = await response.json()
+            
+            // Redirect to Google's OAuth page
+            window.location.href = data.redirect_url
+        } catch (error) {
+            console.error('Google login error:', error)
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    return (
+        <button 
+            onClick={handleGoogleLogin}
+            disabled={isLoading}
+            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+            
+            {isLoading ? 'Loading...' : 'Sign in with Google'}
+        </button>
+    )
+}  
+===== ./frontend/src/app/google/callback/page.jsx =====
+'use client';
+import { useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useAuth } from '@/components/authProvider';
+
+export default function GoogleCallback() {
+  const auth = useAuth()
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const handleCallback = async () => {
+      const code = searchParams.get('code');
+      const state = searchParams.get('state');
+
+      if (!code || !state) {
+        console.error('Missing code or state parameters');
+        router.push('/login'); // Redirect to login on error
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/google/callback', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ code, state }),
+        });
+
+        let data = {}
+        try {
+          data = await response.json()
+        } catch (error) {
+          
+        }
+        // const data = await response.json()
+        if (response.ok) {
+            auth.login(data?.username)
+        } else {
+          setError(data.message || "Login failed. Please check your credentials.")
+        }
+    
+        router.push('/'); // Redirect to dashboard on success
+      } catch (error) {
+        console.error('Error during authentication:', error);
+        router.push('/login'); // Redirect to login on error
+      }
+    };
+
+    handleCallback();
+  }, [searchParams, router]);
+
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="text-center">
+        <h1 className="text-2xl font-semibold mb-4">Authenticating...</h1>
+        <p>Please wait while we complete your sign-in.</p>
+      </div>
+    </div>
+  );
+}
+===== ./frontend/src/app/signup/page.jsx =====
+"use client"
+
+import Image from "next/image"
+import Link from "next/link"
+import { useState } from "react"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { useAuth } from "@/components/authProvider"
+
+const LOGIN_URL = "/api/signup/"
+
+
+export default function Page() {
+  const auth = useAuth()
+  const [error, setError] = useState("")
+  const [fieldErrors, setFieldErrors] = useState({})
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    setError("")
+    setFieldErrors({})
+    const formData = new FormData(event.target)
+    const objectFromForm = Object.fromEntries(formData)
+    
+    if (objectFromForm.password !== objectFromForm.confirm_password) {
+      setError("Passwords do not match")
+      return
+    }
+    
+    const jsonData = JSON.stringify(objectFromForm)
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: jsonData
+    }
+    
+    const response = await fetch(LOGIN_URL, requestOptions)
+    
+    let data = {}
+    try {
+      data = await response.json()
+    } catch (error) {
+      setError("An unexpected error occurred")
+      return
+    }
+
+    if (response.ok) {
+      auth.login(data?.username)
+    } else {
+      if (data.detail && Array.isArray(data.detail)) {
+        const newFieldErrors = {}
+        data.detail.forEach(error => {
+          const fieldName = error.loc[error.loc.length - 1]
+          const mappedFieldName = fieldName === 'confirm_password' ? 'confirmPassword' : fieldName
+          newFieldErrors[mappedFieldName] = error.msg
+        })
+        setFieldErrors(newFieldErrors)
+      } else {
+        setError(data.message || "Signup failed. Please try again.")
+      }
+    }
+  }
+  return (
+    <div className="w-full lg:grid lg:min-h-[85vh]  lg:grid-cols-2 xl:min-h-[90vh]">
+      <div className="flex items-center justify-center py-12">
+        <div className="mx-auto grid w-[350px] gap-6">
+          <div className="grid gap-2 text-center">
+            <h1 className="text-3xl font-bold">Sign Up</h1>
+            <p className="text-balance text-muted-foreground">
+              Create an account to get started
+            </p>
+          </div>
+          <div className="grid gap-4">
+            <form onSubmit={handleSubmit} className="grid gap-4">
+              {error && (
+                <div className="bg-destructive/15 text-destructive text-sm p-3 rounded-md">
+                  {error}
+                </div>
+              )}
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  required
+                />
+                {fieldErrors.email && (
+                  <p className="text-sm text-destructive">{fieldErrors.email}</p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="password">Password</Label>
+                <Input 
+                  id="password" 
+                  name="password" 
+                  type="password" 
+                  placeholder="Choose a password"
+                  required 
+                />
+                {fieldErrors.password && (
+                  <p className="text-sm text-destructive">{fieldErrors.password}</p>
+                )}
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Input 
+                  id="confirm_password" 
+                  name="confirm_password" 
+                  type="password" 
+                  placeholder="Confirm your password"
+                  required 
+                />
+                {fieldErrors.confirmPassword && (
+                  <p className="text-sm text-destructive">{fieldErrors.confirmPassword}</p>
+                )}
+              </div>
+              <Button type="submit" className="w-full">
+                Sign Up
+              </Button>
+            </form>
+          </div>
+          <div className="mt-4 text-center text-sm">
+            Already have an account?{" "}
+            <Link href="/login" className="underline">
+              Login
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="hidden bg-muted lg:block">
+        
+      </div>
+    </div>
+  )
+}
+===== ./frontend/src/app/logout/page.jsx =====
+"use client"
+
+import { useAuth } from "@/components/authProvider"
+const LOGOUT_URL = "/api/logout/"
+
+
+export default function Page() {
+    const auth = useAuth()
+    async function handleClick (event) {
+        event.preventDefault()
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: ""
+        }
+        const response = await fetch(LOGOUT_URL, requestOptions)
+        if (response.ok) {
+            auth.logout()
+        }
+    }
+    return <div className="h-[95vh]">
+        <div className='max-w-md mx-auto py-5'>
+            <h1>Are you sure you want to logout?</h1>
+            <button className='bg-red-500 text-white hover:bg-red-300 px-3 py-2' onClick={handleClick}>Yes, logout</button>
+        </div>
+    </div>
+}
+===== ./frontend/src/app/docs/[docId]/page.js =====
+"use client"
+
+
+import { useAuth } from "@/components/authProvider";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import fetcher from "@/lib/fetcher";
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useRef, useState } from "react";
+
+import useSWR from "swr";
+
+const DocEditor = dynamic( () => import( '@/components/editor/DocEditor' ), { ssr: false } );
+
+
+export default function DocDetailPage() {
+  const {docId} = useParams()
+  const editorRef = useRef(null)
+  const submitBtnRef = useRef(null)
+  const [saving, setSaving] = useState(false)
+  const {isAuthenticated} = useAuth()
+  const apiEndpoint = `/api/documents/${docId}`
+  const {data:doc, isLoading, error, mutate} = useSWR(apiEndpoint, fetcher)
+  const [formError, setFormError] = useState("")
+
+  
+  if (isLoading) {
+    return <div>Loading..</div>
+  }
+  if (error) {
+    if (!isAuthenticated && error.status === 401) {
+      window.location.href='/login'
+    }
+    if (isAuthenticated && error.status === 401) {
+      return <div>Invite required</div>
+    }
+    if (error.status === 404) {
+      return <div>Doc not found</div>
+    }
+    return <div>{error.message} {error.status}</div>
+  }
+  async function handleSubmit (event) {
+    event.preventDefault()
+    setSaving(true)
+    setFormError("") // Clear any previous errors
+    const content = editorRef.current.editor.getData()
+    const formData = new FormData(event.target)
+    const objectFromForm = Object.fromEntries(formData)
+    objectFromForm['content'] = content
+    const jsonData = JSON.stringify(objectFromForm)
+    const requestOptions = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: jsonData
+    }
+    const response = await fetch(apiEndpoint, requestOptions)
+    let data = {}
+    try {
+      data = await response.json()
+    } catch (error) {
+      
+    }
+    // const data = await response.json()
+    if (response.ok) {
+       setSaving(false)
+        mutate()
+    } else {
+      setSaving(false)
+      console.log(data)
+      setFormError(data.message || "Save failed.")
+    }
+}
+
+ const handleOnSave = (editor) => {
+  console.log(editor)
+  submitBtnRef.current.click()
+ }
+
+
+  const title = doc?.title ? doc.title : "Document"
+  return <>
+    <div className="px-4">
+      <h1 className='text-4xl font-bold mb-4'>{title}</h1>
+      <form onSubmit={handleSubmit} className='space-y-2'>
+      {formError && (
+                <div className="bg-destructive/15 text-destructive text-sm p-3 rounded-md">
+                  {formError}
+                </div>
+            )}
+        <Input type='text' defaultValue={doc.title} name='title' />
+        <DocEditor 
+          onSave={handleOnSave}
+        ref={editorRef} 
+        docId={docId}
+        initialData={doc.content} name='content' placeholder='Write your content here!' />
+        <Button  ref={submitBtnRef} type='submit'> {saving ? 'Saving' : 'Save'}</Button>
+      </form>
+      {saving && <p>Saving...</p>}
+
+    </div>
+  </>
+}
+
+===== ./frontend/src/app/docs/page.js =====
+"use client"
+
+
+import fetcher from "@/lib/fetcher";
+import Link from "next/link";
+
+import useSWR from "swr";
+
+export default function DocListPage() {
+  const {data, isLoading, error} = useSWR("/api/documents/", fetcher)
+  const isResultsArray = Array.isArray(data)
+  const results = data && isResultsArray ? data : []
+  console.log(results)
+  if (error) {
+    if (error.status === 401) {
+      window.location.href='/login'
+    }
+    return <div>{error.message} {error.status}</div>
+  }
+  return <>
+  <div className="max-w-2xl mx-auto px-4">
+    <h1 className='text-4xl font-bold mb-4'>Documents</h1>
+  <ul className="list-disc pl-6 space-y-2 mt-4">
+    {results.map((doc, idx)=>{
+        const docLink = `/docs/${doc.id}`
+        return <li key={`doc-${doc.id}-${idx}`}
+          className="text-gray-700 hover:text-gray-900 hover:underline"
+        >
+            <Link href={docLink}>Doc ({doc.id})</Link> 
+        </li>
+    })}
+    </ul>
+    </div>
+  </>
+}
+
+===== ./frontend/src/app/docs/create/page.js =====
+"use client"
+
+
+import { useAuth } from "@/components/authProvider";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import fetcher from "@/lib/fetcher";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useState } from "react";
+
+import useSWR from "swr";
+
+export default function DocCreatePage() {
+  // const {isAuthenticated} = useAuth()
+  const apiEndpoint = `/api/documents/`
+  const [formError, setFormError] = useState("")
+//   if (!isAuthenticated) {
+//     window.location.href='/login'
+//   }
+  async function handleSubmit (event) {
+    event.preventDefault()
+    setFormError("") // Clear any previous errors
+    const formData = new FormData(event.target)
+    const objectFromForm = Object.fromEntries(formData)
+    const jsonData = JSON.stringify(objectFromForm)
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: jsonData
+    }
+    const response = await fetch(apiEndpoint, requestOptions)
+    let data = {}
+    try {
+      data = await response.json()
+    } catch (error) {
+      
+    }
+    // const data = await response.json()
+    if (response.ok) {
+        console.log(data)
+        window.location.href = `/docs/${data.id}`
+        // redirect(`/docs/{data.id}`)
+    } else {
+      console.log(data)
+      setFormError(data.message || "Save failed.")
+    }
+}
+
+
+  const title = "Create new Document"
+  return <>
+    <div className="w-full lg:grid lg:min-h-[85vh]  lg:grid-cols-2 xl:min-h-[90vh]">
+      <div className="flex items-center justify-center py-12">
+        <div className="mx-auto grid w-[350px] gap-6">
+      <h1 className='text-4xl font-bold mb-4'>{title}</h1>
+      <form onSubmit={handleSubmit} className='space-y-2'>
+      {formError && (
+                <div className="bg-destructive/15 text-destructive text-sm p-3 rounded-md">
+                  {formError}
+                </div>
+            )}
+        <Input type='text' placeholder='Your new document title' name='title' />
+        <Button type='submit'>Create doc</Button>
+      </form>
+
+    </div>
+    </div>
+    </div>
+  </>
+}
+
+===== ./frontend/src/app/api/google/callback/route.js =====
+"use server"
+import { setRefreshToken, setToken } from '@/lib/auth'
+import { NextResponse } from 'next/server'
+import { urlJoin } from '@/lib/urlJoin'
+
+const DJANGO_API_URL = process.env.DJANGO_API_URL;
+
+export async function POST(request) {
+    const requestData = await request.json()
+    const url = urlJoin(DJANGO_API_URL, "google/callback")
+    const jsonData = JSON.stringify(requestData)
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: jsonData
+    }
+    const response = await fetch(url, requestOptions)
+    const responseData = await response.json()
+    if (response.ok) {
+        const accessToken = responseData.access_token  || responseData.access
+        const refreshToken = responseData.refresh_token || responseData.refresh
+        if (!accessToken || !refreshToken) {
+            return NextResponse.json({"detail": "Invalid response from server. Please try again."}, {status: 400})
+        }
+        await setToken(accessToken)
+        await setRefreshToken(refreshToken)
+        return NextResponse.json({"loggedIn": true, "username": responseData.username}, {status: 200})
+    }
+    return NextResponse.json({"loggedIn": false, ...responseData}, {status: 400})
+}   
+===== ./frontend/src/app/api/signup/route.js =====
+"use server"
+import { setRefreshToken, setToken } from '@/lib/auth'
+import { NextResponse } from 'next/server'
+import { urlJoin } from '@/lib/urlJoin'
+
+const DJANGO_API_URL = process.env.DJANGO_API_URL;
+
+export async function POST(request) {
+    const requestData = await request.json()
+    const url = urlJoin(DJANGO_API_URL, "signup")
+    const jsonData = JSON.stringify(requestData)
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: jsonData
+    }
+    const response = await fetch(url, requestOptions)
+    const responseData = await response.json()
+    if (response.ok) {
+        const accessToken = responseData.access_token  || responseData.token
+        const refreshToken = responseData.refresh_token || responseData.refresh
+        if (!accessToken || !refreshToken) {
+            return NextResponse.json({"detail": "Invalid response from server. Please try again."}, {status: 400})
+        }
+        await setToken(accessToken)
+        await setRefreshToken(refreshToken)
+        return NextResponse.json({"loggedIn": true, "username": responseData.username}, {status: 200})
+    }
+    return NextResponse.json({"loggedIn": false, ...responseData}, {status: 400})
+}   
+===== ./frontend/src/app/api/health/route.js =====
+import { NextResponse } from 'next/server';
+
+// You can configure this to point to your backend
+const BACKEND_URL = process.env.DJANGO_BASE_URL;
+
+export async function GET(request) {
+    return NextResponse.json({"django_base_url": BACKEND_URL, "status": "ok"});
+}
+
+===== ./frontend/src/app/api/logout/route.js =====
+import { deleteTokens } from "@/lib/auth";
+import { NextResponse } from "next/server";
+
+
+export async function POST(request) {
+    await deleteTokens()
+    return NextResponse.json({}, {status: 200})
+}
+===== ./frontend/src/app/api/ckeditor/route.js =====
+import { NextResponse } from 'next/server';
+
+// You can configure this to point to your backend
+const CKEDITOR_LICENSE_KEY = process.env.CKEDITOR_LICENSE_KEY;
+
+export async function GET(request) {
+    return NextResponse.json({"license": CKEDITOR_LICENSE_KEY});
+}
+
+===== ./frontend/src/app/api/backend/healthz/route.js =====
+import { NextResponse } from 'next/server';
+import {urlJoin} from '@/lib/urlJoin';
+
+const DJANGO_API_URL = process.env.DJANGO_API_URL;
+
+export async function GET(request) {
+  const url = urlJoin(DJANGO_API_URL, "/healthz")
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'GET',
+    });
+    
+    if (response.ok) {
+      return NextResponse.json({ status: 'healthy' }, { status: 200 });
+    } else {
+      return NextResponse.json({ status: 'unhealthy' }, { status: 503 });
+    }
+  } catch (error) {
+    return NextResponse.json(
+      { status: 'unhealthy' },
+      { status: 503 }
+    );
+  }
+}
+===== ./frontend/src/app/api/[...path]/route.js =====
+import { NextResponse } from 'next/server';
+import {urlJoin} from '@/lib/urlJoin';
+import { TokenFetch } from '@/lib/tokenFetcher';
+
+const DJANGO_API_URL = process.env.DJANGO_API_URL;
+
+export async function GET(request, { params }) {
+  const path = (await params).path;
+  const url = urlJoin(DJANGO_API_URL, path) + request.nextUrl.search;
+  try {
+    const response = await TokenFetch.fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'GET',
+    });
+    if (!response.ok) {
+      return NextResponse.json(
+        { error: 'Failed to fetch from backend' },
+        { status: response.status }
+      );
+    }
+    const data = await response.json();
+    return NextResponse.json(data, { status: response.status });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Failed to fetch from backend' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function POST(request, { params }) {
+  const path = (await params).path;
+  const url = urlJoin(DJANGO_API_URL, path)  + request.nextUrl.search;
+  try {
+    const body = await request.json();
+    const response = await TokenFetch.fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Forward other headers as needed
+      },
+      body: JSON.stringify(body),
+    });
+    if (!response.ok) {
+      return NextResponse.json(
+        { error: 'Failed to fetch from backend' },
+        { status: response.status }
+      );
+    }
+
+    const data = await response.json();
+    return NextResponse.json(data, { status: response.status });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Failed to post to backend' },
+      { status: 500 }
+    );
+  }
+}
+
+
+export async function PUT(request, { params }) {
+  const path = (await params).path;
+  const url = urlJoin(DJANGO_API_URL, path)  + request.nextUrl.search;
+  try {
+    const body = await request.json();
+    const response = await TokenFetch.fetch(url, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json',
+        // Forward other headers as needed
+      },
+      body: JSON.stringify(body),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      return NextResponse.json(
+        data,
+        { status: response.status }
+      );
+    }
+
+    
+    return NextResponse.json(data, { status: response.status });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Failed to post to backend' },
+      { status: 500 }
+    );
+  }
+}
+===== ./frontend/src/app/api/login/route.js =====
+"use server"
+import { setRefreshToken, setToken } from '@/lib/auth'
+import { NextResponse } from 'next/server'
+import { urlJoin } from '@/lib/urlJoin'
+
+const DJANGO_API_URL = process.env.DJANGO_API_URL;
+
+export async function POST(request) {
+    const requestData = await request.json()
+    const url = urlJoin(DJANGO_API_URL, "login")
+    const jsonData = JSON.stringify(requestData)
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: jsonData
+    }
+    const response = await fetch(url, requestOptions)
+    const responseData = await response.json()
+    if (response.ok) {
+        const accessToken = responseData.access_token  || responseData.access
+        const refreshToken = responseData.refresh_token || responseData.refresh
+        if (!accessToken || !refreshToken) {
+            return NextResponse.json({"detail": "Invalid response from server. Please try again."}, {status: 400})
+        }
+        await setToken(accessToken)
+        await setRefreshToken(refreshToken)
+        return NextResponse.json({"loggedIn": true, "username": responseData.username}, {status: 200})
+    }
+    return NextResponse.json({"loggedIn": false, ...responseData}, {status: 400})
+}   
+===== ./frontend/src/app/healthz/route.js =====
+import { NextResponse } from "next/server";
+
+export async function GET(request) {
+  return NextResponse.json({ message: "OK" });
+}
+
+===== ./frontend/src/app/login/page.jsx =====
+"use client"
+
+import Image from "next/image"
+import Link from "next/link"
+import { useState } from "react"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { useAuth } from "@/components/authProvider"
+import GoogleLoginButton from "../google/GoogleLoginButton"
+
+const LOGIN_URL = "/api/login/"
+
+
+export default function Page() {
+  const auth = useAuth()
+  const [error, setError] = useState("")
+
+  async function handleSubmit (event) {
+        event.preventDefault()
+        setError("") // Clear any previous errors
+        const formData = new FormData(event.target)
+        const objectFromForm = Object.fromEntries(formData)
+        const jsonData = JSON.stringify(objectFromForm)
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: jsonData
+        }
+        const response = await fetch(LOGIN_URL, requestOptions)
+        let data = {}
+        try {
+          data = await response.json()
+        } catch (error) {
+          
+        }
+        // const data = await response.json()
+        if (response.ok) {
+            auth.login(data?.username)
+        } else {
+          setError(data.message || "Login failed. Please check your credentials.")
+        }
+    }
+  return (
+    <div className="w-full lg:grid lg:min-h-[85vh]  lg:grid-cols-2 xl:min-h-[90vh]">
+      <div className="flex items-center justify-center py-12">
+        <div className="mx-auto grid w-[350px] gap-6">
+          <div className="grid gap-2 text-center">
+            <h1 className="text-3xl font-bold">Login</h1>
+            <p className="text-balance text-muted-foreground">
+              Enter your email below to login to your account
+            </p>
+          </div>
+          <div>
+            <GoogleLoginButton />
+          </div>
+
+          <div className="grid gap-4">
+            <form onSubmit={handleSubmit} className="grid gap-4">
+              {error && (
+                <div className="bg-destructive/15 text-destructive text-sm p-3 rounded-md">
+                  {error}
+                </div>
+              )}
+                    <div className="grid gap-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                        id="email"
+                        type="email"
+                        name="email"
+                        placeholder="Your email"
+                        required
+                    />
+                    </div>
+                    <div className="grid gap-2">
+                        <div className="flex items-center">
+                            <Label htmlFor="password">Password</Label>
+                         
+                        </div>
+                        <Input placeholder="Your password" id="password" name="password" type="password" required />
+              
+                    </div>
+               
+          
+                    <Button type="submit" className="w-full">
+                    Login
+                    </Button>
+ 
+            </form>
+          </div>
+          <div className="mt-4 text-center text-sm">
+            Don&apos;t have an account?{" "}
+            <Link href="/signup" className="underline">
+              Sign up
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="hidden bg-muted lg:block">
+        
+      </div>
+    </div>
+  )
+}
+===== ./frontend/src/components/ui/input.jsx =====
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+const Input = React.forwardRef(({ className, type, ...props }, ref) => {
+  return (
+    (<input
+      type={type}
+      className={cn(
+        "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        className
+      )}
+      ref={ref}
+      {...props} />)
+  );
+})
+Input.displayName = "Input"
+
+export { Input }
+
+===== ./frontend/src/components/ui/textarea.jsx =====
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+const Textarea = React.forwardRef(({ className, ...props }, ref) => {
+  return (
+    (<textarea
+      className={cn(
+        "flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        className
+      )}
+      ref={ref}
+      {...props} />)
+  );
+})
+Textarea.displayName = "Textarea"
+
+export { Textarea }
+
+===== ./frontend/src/components/ui/dropdown-menu.jsx =====
+"use client"
+
+import * as React from "react"
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
+import { Check, ChevronRight, Circle } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+const DropdownMenu = DropdownMenuPrimitive.Root
+
+const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
+
+const DropdownMenuGroup = DropdownMenuPrimitive.Group
+
+const DropdownMenuPortal = DropdownMenuPrimitive.Portal
+
+const DropdownMenuSub = DropdownMenuPrimitive.Sub
+
+const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
+
+const DropdownMenuSubTrigger = React.forwardRef(({ className, inset, children, ...props }, ref) => (
+  <DropdownMenuPrimitive.SubTrigger
+    ref={ref}
+    className={cn(
+      "flex cursor-default gap-2 select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+      inset && "pl-8",
+      className
+    )}
+    {...props}>
+    {children}
+    <ChevronRight className="ml-auto" />
+  </DropdownMenuPrimitive.SubTrigger>
+))
+DropdownMenuSubTrigger.displayName =
+  DropdownMenuPrimitive.SubTrigger.displayName
+
+const DropdownMenuSubContent = React.forwardRef(({ className, ...props }, ref) => (
+  <DropdownMenuPrimitive.SubContent
+    ref={ref}
+    className={cn(
+      "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+      className
+    )}
+    {...props} />
+))
+DropdownMenuSubContent.displayName =
+  DropdownMenuPrimitive.SubContent.displayName
+
+const DropdownMenuContent = React.forwardRef(({ className, sideOffset = 4, ...props }, ref) => (
+  <DropdownMenuPrimitive.Portal>
+    <DropdownMenuPrimitive.Content
+      ref={ref}
+      sideOffset={sideOffset}
+      className={cn(
+        "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
+        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        className
+      )}
+      {...props} />
+  </DropdownMenuPrimitive.Portal>
+))
+DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
+
+const DropdownMenuItem = React.forwardRef(({ className, inset, ...props }, ref) => (
+  <DropdownMenuPrimitive.Item
+    ref={ref}
+    className={cn(
+      "relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&>svg]:size-4 [&>svg]:shrink-0",
+      inset && "pl-8",
+      className
+    )}
+    {...props} />
+))
+DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName
+
+const DropdownMenuCheckboxItem = React.forwardRef(({ className, children, checked, ...props }, ref) => (
+  <DropdownMenuPrimitive.CheckboxItem
+    ref={ref}
+    className={cn(
+      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      className
+    )}
+    checked={checked}
+    {...props}>
+    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+      <DropdownMenuPrimitive.ItemIndicator>
+        <Check className="h-4 w-4" />
+      </DropdownMenuPrimitive.ItemIndicator>
+    </span>
+    {children}
+  </DropdownMenuPrimitive.CheckboxItem>
+))
+DropdownMenuCheckboxItem.displayName =
+  DropdownMenuPrimitive.CheckboxItem.displayName
+
+const DropdownMenuRadioItem = React.forwardRef(({ className, children, ...props }, ref) => (
+  <DropdownMenuPrimitive.RadioItem
+    ref={ref}
+    className={cn(
+      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      className
+    )}
+    {...props}>
+    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+      <DropdownMenuPrimitive.ItemIndicator>
+        <Circle className="h-2 w-2 fill-current" />
+      </DropdownMenuPrimitive.ItemIndicator>
+    </span>
+    {children}
+  </DropdownMenuPrimitive.RadioItem>
+))
+DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName
+
+const DropdownMenuLabel = React.forwardRef(({ className, inset, ...props }, ref) => (
+  <DropdownMenuPrimitive.Label
+    ref={ref}
+    className={cn("px-2 py-1.5 text-sm font-semibold", inset && "pl-8", className)}
+    {...props} />
+))
+DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName
+
+const DropdownMenuSeparator = React.forwardRef(({ className, ...props }, ref) => (
+  <DropdownMenuPrimitive.Separator
+    ref={ref}
+    className={cn("-mx-1 my-1 h-px bg-muted", className)}
+    {...props} />
+))
+DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName
+
+const DropdownMenuShortcut = ({
+  className,
+  ...props
+}) => {
+  return (
+    (<span
+      className={cn("ml-auto text-xs tracking-widest opacity-60", className)}
+      {...props} />)
+  );
+}
+DropdownMenuShortcut.displayName = "DropdownMenuShortcut"
+
+export {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuGroup,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuRadioGroup,
+}
+
+===== ./frontend/src/components/ui/button.jsx =====
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva } from "class-variance-authority";
+
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2",
+        sm: "h-8 rounded-md px-3 text-xs",
+        lg: "h-10 rounded-md px-8",
+        icon: "h-9 w-9",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+const Button = React.forwardRef(({ className, variant, size, asChild = false, ...props }, ref) => {
+  const Comp = asChild ? Slot : "button"
+  return (
+    (<Comp
+      className={cn(buttonVariants({ variant, size, className }))}
+      ref={ref}
+      {...props} />)
+  );
+})
+Button.displayName = "Button"
+
+export { Button, buttonVariants }
+
+===== ./frontend/src/components/ui/table.jsx =====
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+const Table = React.forwardRef(({ className, ...props }, ref) => (
+  <div className="relative w-full overflow-auto">
+    <table
+      ref={ref}
+      className={cn("w-full caption-bottom text-sm", className)}
+      {...props} />
+  </div>
+))
+Table.displayName = "Table"
+
+const TableHeader = React.forwardRef(({ className, ...props }, ref) => (
+  <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props} />
+))
+TableHeader.displayName = "TableHeader"
+
+const TableBody = React.forwardRef(({ className, ...props }, ref) => (
+  <tbody
+    ref={ref}
+    className={cn("[&_tr:last-child]:border-0", className)}
+    {...props} />
+))
+TableBody.displayName = "TableBody"
+
+const TableFooter = React.forwardRef(({ className, ...props }, ref) => (
+  <tfoot
+    ref={ref}
+    className={cn("border-t bg-muted/50 font-medium [&>tr]:last:border-b-0", className)}
+    {...props} />
+))
+TableFooter.displayName = "TableFooter"
+
+const TableRow = React.forwardRef(({ className, ...props }, ref) => (
+  <tr
+    ref={ref}
+    className={cn(
+      "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+      className
+    )}
+    {...props} />
+))
+TableRow.displayName = "TableRow"
+
+const TableHead = React.forwardRef(({ className, ...props }, ref) => (
+  <th
+    ref={ref}
+    className={cn(
+      "h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+      className
+    )}
+    {...props} />
+))
+TableHead.displayName = "TableHead"
+
+const TableCell = React.forwardRef(({ className, ...props }, ref) => (
+  <td
+    ref={ref}
+    className={cn(
+      "p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+      className
+    )}
+    {...props} />
+))
+TableCell.displayName = "TableCell"
+
+const TableCaption = React.forwardRef(({ className, ...props }, ref) => (
+  <caption
+    ref={ref}
+    className={cn("mt-4 text-sm text-muted-foreground", className)}
+    {...props} />
+))
+TableCaption.displayName = "TableCaption"
+
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+}
+
+===== ./frontend/src/components/ui/card.jsx =====
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+const Card = React.forwardRef(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("rounded-xl border bg-card text-card-foreground shadow", className)}
+    {...props} />
+))
+Card.displayName = "Card"
+
+const CardHeader = React.forwardRef(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    {...props} />
+))
+CardHeader.displayName = "CardHeader"
+
+const CardTitle = React.forwardRef(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("font-semibold leading-none tracking-tight", className)}
+    {...props} />
+))
+CardTitle.displayName = "CardTitle"
+
+const CardDescription = React.forwardRef(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props} />
+))
+CardDescription.displayName = "CardDescription"
+
+const CardContent = React.forwardRef(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+))
+CardContent.displayName = "CardContent"
+
+const CardFooter = React.forwardRef(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex items-center p-6 pt-0", className)}
+    {...props} />
+))
+CardFooter.displayName = "CardFooter"
+
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+
+===== ./frontend/src/components/ui/label.jsx =====
+"use client"
+
+import * as React from "react"
+import * as LabelPrimitive from "@radix-ui/react-label"
+import { cva } from "class-variance-authority";
+
+import { cn } from "@/lib/utils"
+
+const labelVariants = cva(
+  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+)
+
+const Label = React.forwardRef(({ className, ...props }, ref) => (
+  <LabelPrimitive.Root ref={ref} className={cn(labelVariants(), className)} {...props} />
+))
+Label.displayName = LabelPrimitive.Root.displayName
+
+export { Label }
+
+===== ./frontend/src/components/ui/sheet.jsx =====
+"use client";
+import * as React from "react"
+import * as SheetPrimitive from "@radix-ui/react-dialog"
+import { cva } from "class-variance-authority";
+import { X } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+const Sheet = SheetPrimitive.Root
+
+const SheetTrigger = SheetPrimitive.Trigger
+
+const SheetClose = SheetPrimitive.Close
+
+const SheetPortal = SheetPrimitive.Portal
+
+const SheetOverlay = React.forwardRef(({ className, ...props }, ref) => (
+  <SheetPrimitive.Overlay
+    className={cn(
+      "fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className
+    )}
+    {...props}
+    ref={ref} />
+))
+SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
+
+const sheetVariants = cva(
+  "fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out",
+  {
+    variants: {
+      side: {
+        top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+        bottom:
+          "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
+        left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
+        right:
+          "inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+      },
+    },
+    defaultVariants: {
+      side: "right",
+    },
+  }
+)
+
+const SheetContent = React.forwardRef(({ side = "right", className, children, ...props }, ref) => (
+  <SheetPortal>
+    <SheetOverlay />
+    <SheetPrimitive.Content ref={ref} className={cn(sheetVariants({ side }), className)} {...props}>
+      <SheetPrimitive.Close
+        className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+        <X className="h-4 w-4" />
+        <span className="sr-only">Close</span>
+      </SheetPrimitive.Close>
+      {children}
+    </SheetPrimitive.Content>
+  </SheetPortal>
+))
+SheetContent.displayName = SheetPrimitive.Content.displayName
+
+const SheetHeader = ({
+  className,
+  ...props
+}) => (
+  <div
+    className={cn("flex flex-col space-y-2 text-center sm:text-left", className)}
+    {...props} />
+)
+SheetHeader.displayName = "SheetHeader"
+
+const SheetFooter = ({
+  className,
+  ...props
+}) => (
+  <div
+    className={cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className)}
+    {...props} />
+)
+SheetFooter.displayName = "SheetFooter"
+
+const SheetTitle = React.forwardRef(({ className, ...props }, ref) => (
+  <SheetPrimitive.Title
+    ref={ref}
+    className={cn("text-lg font-semibold text-foreground", className)}
+    {...props} />
+))
+SheetTitle.displayName = SheetPrimitive.Title.displayName
+
+const SheetDescription = React.forwardRef(({ className, ...props }, ref) => (
+  <SheetPrimitive.Description
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props} />
+))
+SheetDescription.displayName = SheetPrimitive.Description.displayName
+
+export {
+  Sheet,
+  SheetPortal,
+  SheetOverlay,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+}
+
+===== ./frontend/src/components/themeProvider.jsx =====
+"use client"
+ 
+import * as React from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+
+export function ThemeProvider({ children, ...props }) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+}
+===== ./frontend/src/components/layout/BrandLink.jsx =====
+"use client"
+
+import Link from "next/link"
+import Image from "next/image"
+
+export default function BrandLink({className}){
+    const finalClass = className ? className : "flex items-center gap-2 text-lg font-semibold md:text-base"
+    return <Link
+        href="/"
+        className={finalClass}
+    >
+        <Image src="/logo.png" alt="logo" width={50} height={50} />
+        <span className="sr-only">logo</span>
+    </Link>
+}
+===== ./frontend/src/components/layout/MobileNavbar.jsx =====
+"use client"
+
+import Link from "next/link"
+import { Menu } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import { useAuth } from "../authProvider"
+
+import NavLinks, {NonUserLinks} from './NavLinks'
+import BrandLink from "./BrandLink"
+import { useAPI } from "../apiProvider"
+
+
+
+export default function MobileNavbar({className}) {
+    const { isHealthy } = useAPI();
+    const auth = useAuth()
+    return   <Sheet>
+    <SheetTrigger asChild>
+      <Button
+        variant="outline"
+        size="icon"
+        className="shrink-0 md:hidden"
+      >
+        <Menu className="h-5 w-5" />
+        <span className="sr-only">Toggle navigation menu</span>
+      </Button>
+    </SheetTrigger>
+    <SheetContent side="left">
+      <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+      <nav className="grid gap-6 text-lg font-medium">
+        <BrandLink displayName={true} className="flex items-center gap-2 text-lg font-semibold" />
+
+        {NavLinks.map((navLinkItem, idx)=>{
+          const shouldHide = !auth.isAuthenticated &&navLinkItem.authRequired
+          const shouldHideHealthCheck = navLinkItem.apiHealthRequired && !isHealthy
+          if (shouldHide) {
+            return null
+          }
+          if (shouldHideHealthCheck) {
+            return null
+          }
+          return <Link
+              href={navLinkItem.href}
+              key={`nav-links-b-${idx}`}
+              className="text-muted-foreground hover:text-foreground"
+          >
+              {navLinkItem.label}
+          </Link>
+      })}
+
+        {auth.isAuthenticated ? 
+        <Link href="/logout" className="text-muted-foreground hover:text-foreground">
+          Logout
+        </Link>
+        : <>
+          {NonUserLinks.map((navLinkItem, idx)=>{
+              const shouldHide = !auth.isAuthenticated &&navLinkItem.authRequired
+              const shouldHideHealthCheck = navLinkItem.apiHealthRequired && !isHealthy
+              return shouldHide || shouldHideHealthCheck ? null : <Link
+                  href={navLinkItem.href}
+                  key={`nav-links-c-${idx}`}
+                  className="text-muted-foreground hover:text-foreground"
+              >
+                  {navLinkItem.label}
+              </Link>
+          })}
+        </>}
+    
+      </nav>
+    </SheetContent>
+  </Sheet>
+}
+===== ./frontend/src/components/layout/NavLinks.jsx =====
+const NavLinks = [
+    {
+        label: "Dashboard",
+        authRequired: false,
+        href: "/"
+    },
+    {
+        label: "Waitlist",
+        authRequired: true,
+        apiHealthRequired: true,
+        href: "/waitlists"
+    }
+]
+
+export const NonUserLinks = [
+    {
+        label: "Signup",
+        authRequired: false,
+        apiHealthRequired: true,
+        href: "/signup"
+    },
+    {
+        label: "Login",
+        authRequired: false,
+        apiHealthRequired: true,
+        href: "/login"
+    }
+]
+export default NavLinks
+===== ./frontend/src/components/layout/AccountDropdown.jsx =====
+"use client"
+
+
+import { CircleUser,  } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { useAuth } from "../authProvider"
+import { useRouter } from "next/navigation"
+
+
+
+export default function AccountDropdown({className}) {
+    const auth = useAuth()
+    const router = useRouter()
+
+    return  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+    <Button variant="secondary" size="icon" className="rounded-full">
+        <CircleUser className="h-5 w-5" />
+        <span className="sr-only">Toggle user menu</span>
+    </Button>
+    </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+        <DropdownMenuLabel>{auth.username? auth.username : "Account"}</DropdownMenuLabel>
+        <DropdownMenuItem onClick={e=> router.push('/logout')}>Logout</DropdownMenuItem>
+        </DropdownMenuContent>
+    </DropdownMenu>
+}
+===== ./frontend/src/components/layout/Navbar.jsx =====
+"use client"
+
+import Link from "next/link"
+import { useAuth } from "../authProvider"
+import NavLinks, {NonUserLinks} from './NavLinks'
+import BrandLink from "./BrandLink"
+import MobileNavbar from "./MobileNavbar"
+import AccountDropdown from "./AccountDropdown"
+import { useAPI } from "../apiProvider"
+
+
+export default function Navbar({className}) {
+    const { isHealthy } = useAPI();
+    const auth = useAuth()
+    const finalClass = className ? className : "sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6"
+    return  <header className={finalClass}>
+    <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+        <BrandLink displayName={true} />
+  
+       
+      
+    </nav>
+    <MobileNavbar />
+    <div className="md:hidden">
+        <BrandLink displayName={true} />
+    </div>
+    <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+      
+   
+      {auth.isAuthenticated ?
+      <div className="ml-auto">
+        <AccountDropdown />
+        </div>
+    : <div className="ml-auto space-x-2">
+         {NavLinks.map((navLinkItem, idx)=>{
+            const shouldHide = !auth.isAuthenticated && navLinkItem.authRequired
+            const shouldHideHealthCheck = navLinkItem.apiHealthRequired && !isHealthy
+            if (shouldHide) {
+                return null
+            }
+            if (shouldHideHealthCheck) {
+                return null
+            }
+            return <Link
+                href={navLinkItem.href}
+                key={`nav-links-a-${idx}`}
+                className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+                {navLinkItem.label}
+            </Link>
+        })}
+        
+        {NonUserLinks.map((navLinkItem, idx)=>{
+            const shouldHide = !auth.isAuthenticated &&navLinkItem.authRequired
+            const shouldHideHealthCheck = navLinkItem.apiHealthRequired && !isHealthy
+            if (shouldHide) {
+                return null
+            }
+            if (shouldHideHealthCheck) {
+                return null
+            }
+            return <Link
+                href={navLinkItem.href}
+                key={`nav-links-d-${idx}`}
+                className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+                {navLinkItem.label}
+            </Link>
+        })}
+        </div>}
+ 
+    </div>
+  </header>
+}
+===== ./frontend/src/components/layout/BaseLayout.jsx =====
+"use client"
+
+import Navbar from './Navbar'
+
+
+export default function BaseLayout({ children, className}) {
+    const mainClassName = className ? className : "flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10"
+  return (
+    <div className="flex min-h-screen w-full flex-col">
+        <Navbar />
+      <main className={mainClassName}>
+      {children}
+      </main>
+    </div>
+  )
+}
+===== ./frontend/src/components/useMySWR.jsx =====
+import useSWR from 'swr'
+
+import fetcher from "@/lib/fetcher";
+
+export default function useMySWR(url) {
+  return useSWR(url, fetcher);
+}
+===== ./frontend/src/components/authProvider.jsx =====
+"use client"
+
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
+const { createContext, useContext, useState, useEffect } = require("react");
+const AuthContext = createContext(null);
+
+const LOGIN_REDIRECT_URL = "/"
+const LOGOUT_REDIRECT_URL = "/login"
+const LOGIN_REQUIRED_URL = "/login"
+const LOCAL_STORAGE_KEY = "is-logged-in"
+const LOCAL_USERNAME_KEY = "username"
+
+export function AuthProvider({children}) {
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [username, setUsername] = useState("")
+    const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+    
+    useEffect(()=>{
+        const storedAuthStatus = localStorage.getItem(LOCAL_STORAGE_KEY)
+        if (storedAuthStatus) {
+            const storedAuthStatusInt = parseInt(storedAuthStatus)
+            setIsAuthenticated(storedAuthStatusInt===1)
+        }
+        const storedUn = localStorage.getItem(LOCAL_USERNAME_KEY)
+        if (storedUn) {
+            setUsername(storedUn)
+        }
+    },[])
+
+    const login = (username) => {
+        setIsAuthenticated(true)
+        localStorage.setItem(LOCAL_STORAGE_KEY, "1")
+        if (username) {
+            localStorage.setItem(LOCAL_USERNAME_KEY, `${username}`)
+            setUsername(username)
+        } else {
+            localStorage.removeItem(LOCAL_USERNAME_KEY)
+        }
+        const nextUrl = searchParams.get("next")
+        const invalidNextUrl = ['/login', '/logout']
+        const nextUrlValid = nextUrl && nextUrl.startsWith("/") && !invalidNextUrl.includes(nextUrl)
+        if (nextUrlValid) {
+            router.replace(nextUrl)
+            return
+        } else {
+            router.replace(LOGIN_REDIRECT_URL)
+            return
+        }
+    }
+    const logout = () => {
+        setIsAuthenticated(false)
+        localStorage.setItem(LOCAL_STORAGE_KEY, "0")
+        router.replace(LOGOUT_REDIRECT_URL)
+    }
+    const loginRequiredRedirect = () => {
+        // user is not logged in via API
+        setIsAuthenticated(false)
+        localStorage.setItem(LOCAL_STORAGE_KEY, "0")
+        let loginWithNextUrl = `${LOGIN_REQUIRED_URL}?next=${pathname}`
+        if (LOGIN_REQUIRED_URL === pathname) {
+            loginWithNextUrl = `${LOGIN_REQUIRED_URL}`
+        }
+        router.replace(loginWithNextUrl)
+    }
+    return <AuthContext.Provider value={{isAuthenticated, login, logout, loginRequiredRedirect, username}}>
+        {children}
+    </AuthContext.Provider>
+}
+
+export function useAuth(){
+    return useContext(AuthContext)
+}
+===== ./frontend/src/components/apiProvider.jsx =====
+"use client"
+
+import { createContext, useContext, useEffect, useState } from 'react';
+import useMySWR from "@/components/useMySWR";
+const APIContext = createContext();
+
+export function APIProvider({ children }) {
+  const { data, error, isLoading } = useMySWR("/api/backend/healthz");
+  const isHealthy = !error && data?.status === "healthy";
+
+  return (
+    <APIContext.Provider value={{ isHealthy, isLoading }}>
+      {children}
+    </APIContext.Provider>
+  );
+}
+
+export function useAPI() {
+  const context = useContext(APIContext);
+  if (context === undefined) {
+    throw new Error('useAPI must be used within an APIProvider');
+  }
+  return context;
+}
+
+===== ./frontend/src/components/editor/DocEditor.jsx =====
+/**
+ * This configuration was generated using the CKEditor 5 Builder. You can modify it anytime using this link:
+ * https://ckeditor.com/ckeditor-5/builder/?redirect=portal#installation/NoBgNARATAdAbDEFIEYDMU4A41zgdjRC2IBYBOEc0nfAVirk232vKlNLpXxRSmQQApgDtkaMMBRhp4cNJQBdSFDT4OcchEVA
+ */
+
+import { useState, useEffect, useRef, useMemo } from 'react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import {
+	DecoupledEditor,
+	Plugin,
+	ButtonView,
+	Alignment,
+	Autoformat,
+	AutoImage,
+	AutoLink,
+	Autosave,
+	BalloonToolbar,
+	Bold,
+	Bookmark,
+	CloudServices,
+	Code,
+	Emoji,
+	Essentials,
+	FindAndReplace,
+	FontBackgroundColor,
+	FontColor,
+	FontFamily,
+	FontSize,
+	GeneralHtmlSupport,
+	Heading,
+	Highlight,
+	HorizontalLine,
+	ImageBlock,
+	ImageCaption,
+	ImageEditing,
+	ImageInline,
+	ImageInsert,
+	ImageInsertViaUrl,
+	ImageResize,
+	ImageStyle,
+	ImageTextAlternative,
+	ImageToolbar,
+	ImageUpload,
+	ImageUtils,
+	Indent,
+	IndentBlock,
+	Italic,
+	Link,
+	LinkImage,
+	List,
+	ListProperties,
+	Markdown,
+	Mention,
+	PageBreak,
+	Paragraph,
+	PasteFromMarkdownExperimental,
+	PasteFromOffice,
+	PictureEditing,
+	PlainTableOutput,
+	RemoveFormat,
+	SpecialCharacters,
+	SpecialCharactersArrows,
+	SpecialCharactersCurrency,
+	SpecialCharactersEssentials,
+	SpecialCharactersLatin,
+	SpecialCharactersMathematical,
+	SpecialCharactersText,
+	Strikethrough,
+	Style,
+	Subscript,
+	Superscript,
+	Table,
+	TableCaption,
+	TableCellProperties,
+	TableColumnResize,
+	TableProperties,
+	TableToolbar,
+	TextPartLanguage,
+	TextTransformation,
+	TodoList,
+	Underline,
+	Base64UploadAdapter
+} from 'ckeditor5';
+import {
+	getEmailInlineStylesTransformations,
+	CaseChange,
+	Comments,
+	DocumentOutline,
+	ExportPdf,
+	ExportWord,
+	FormatPainter,
+	ImportWord,
+	MergeFields,
+	MultiLevelList,
+	Pagination,
+	PasteFromOfficeEnhanced,
+	PresenceList,
+	RealTimeCollaborativeComments,
+	RealTimeCollaborativeEditing,
+	RealTimeCollaborativeRevisionHistory,
+	RealTimeCollaborativeTrackChanges,
+	RevisionHistory,
+	SlashCommand,
+	TableOfContents,
+	Template,
+	TrackChanges,
+	TrackChangesData,
+	TrackChangesPreview,
+} from 'ckeditor5-premium-features';
+
+import 'ckeditor5/ckeditor5.css';
+import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
+
+import useSWR from 'swr';
+import fetcher from '@/lib/fetcher';
+import './docEditor.css';
+
+/**
+ * Unique ID that will be used to identify this document. E.g. you may use ID taken from your database.
+ * Read more: https://ckeditor.com/docs/ckeditor5/latest/api/module_collaboration-core_config-RealTimeCollaborationConfig.html
+ */
+const DOCUMENT_ID = '<YOUR_DOCUMENT_ID>';
+
+const CLOUD_SERVICES_TOKEN_URL =
+	'https://02lj6g8l2mnd.cke-cs.com/token/dev/96d6171b63e340d6661f41c1b6cf49441bafa9dac2a7413b90dcb0947bdc?limit=10';
+const CLOUD_SERVICES_WEBSOCKET_URL = 'wss://02lj6g8l2mnd.cke-cs.com/ws';
+
+export default function App() {
+	const editorPresenceRef = useRef(null);
+	const editorContainerRef = useRef(null);
+	const editorMenuBarRef = useRef(null);
+	const editorToolbarRef = useRef(null);
+	const editorOutlineRef = useRef(null);
+	const editorRef = useRef(null);
+	const editorAnnotationsRef = useRef(null);
+	const editorRevisionHistoryRef = useRef(null);
+	const editorRevisionHistoryEditorRef = useRef(null);
+	const editorRevisionHistorySidebarRef = useRef(null);
+	const [isLayoutReady, setIsLayoutReady] = useState(false);
+	const {data, isLoading} = useSWR('/api/ckeditor', fetcher)
+	const license =  data?.license ? data?.license : 'GPL'
+
+	useEffect(() => {
+		setIsLayoutReady(true);
+
+		return () => setIsLayoutReady(false);
+	}, []);
+
+	const fetchUserToken = async () => {
+		const endpoint = '/api/accounts/ckeditor/token/'
+		const options = {
+			method: "GET",
+			headers: {
+				'Content-Type': 'application/json'
+			}, 
+		}
+		const response = await fetch(endpoint, options)
+		if (!response.ok) {
+			throw new Error("Invalid token")
+		}
+		const data = await response.json()
+		const {myUserToken} = data
+		if (!myUserToken) {
+			throw new Error("Invalid token")
+		}
+		return myUserToken
+	}
+
+	const { editorConfig } = useMemo(() => {
+		if (!isLayoutReady) {
+			return {};
+		}
+
+		return {
+			editorConfig: {
+				toolbar: {
+					items: [
+						'undo',
+						'redo',
+						'|',
+						'previousPage',
+						'nextPage',
+						'pageNavigation',
+						'|',
+						'revisionHistory',
+						'trackChanges',
+						'comment',
+						'commentsArchive',
+						'|',
+						'insertMergeField',
+						'previewMergeFields',
+						'|',
+						'importWord',
+						'exportWord',
+						'exportPdf',
+						'formatPainter',
+						'caseChange',
+						'findAndReplace',
+						'textPartLanguage',
+						'|',
+						'heading',
+						'style',
+						'|',
+						'fontSize',
+						'fontFamily',
+						'fontColor',
+						'fontBackgroundColor',
+						'|',
+						'bold',
+						'italic',
+						'underline',
+						'strikethrough',
+						'subscript',
+						'superscript',
+						'code',
+						'removeFormat',
+						'|',
+						'emoji',
+						'specialCharacters',
+						'horizontalLine',
+						'pageBreak',
+						'link',
+						'bookmark',
+						'insertImage',
+						'insertImageViaUrl',
+						'insertTable',
+						'insertTableLayout',
+						'tableOfContents',
+						'insertTemplate',
+						'highlight',
+						'|',
+						'alignment',
+						'|',
+						'bulletedList',
+						'numberedList',
+						'multiLevelList',
+						'todoList',
+						'outdent',
+						'indent'
+					],
+					shouldNotGroupWhenFull: true
+				},
+				plugins: [
+					Alignment,
+					Autoformat,
+					AutoImage,
+					AutoLink,
+					Autosave,
+					BalloonToolbar,
+					Bold,
+					Base64UploadAdapter,
+					Bookmark,
+					CaseChange,
+					CloudServices,
+					Code,
+					Comments,
+					DocumentOutline,
+					Emoji,
+					Essentials,
+					ExportPdf,
+					ExportWord,
+					FindAndReplace,
+					FontBackgroundColor,
+					FontColor,
+					FontFamily,
+					FontSize,
+					FormatPainter,
+					GeneralHtmlSupport,
+					Heading,
+					Highlight,
+					HorizontalLine,
+					ImageBlock,
+					ImageCaption,
+					ImageEditing,
+					ImageInline,
+					ImageInsert,
+					ImageInsertViaUrl,
+					ImageResize,
+					ImageStyle,
+					ImageTextAlternative,
+					ImageToolbar,
+					ImageUpload,
+					ImageUtils,
+					ImportWord,
+					Indent,
+					IndentBlock,
+					Italic,
+					Link,
+					LinkImage,
+					List,
+					ListProperties,
+					Markdown,
+					Mention,
+					MergeFields,
+					MultiLevelList,
+					PageBreak,
+					Pagination,
+					Paragraph,
+					PasteFromMarkdownExperimental,
+					PasteFromOffice,
+					PasteFromOfficeEnhanced,
+					PictureEditing,
+					PlainTableOutput,
+					PresenceList,
+					RealTimeCollaborativeComments,
+					RealTimeCollaborativeEditing,
+					RealTimeCollaborativeRevisionHistory,
+					RealTimeCollaborativeTrackChanges,
+					RemoveFormat,
+					RevisionHistory,
+					SlashCommand,
+					SpecialCharacters,
+					SpecialCharactersArrows,
+					SpecialCharactersCurrency,
+					SpecialCharactersEssentials,
+					SpecialCharactersLatin,
+					SpecialCharactersMathematical,
+					SpecialCharactersText,
+					Strikethrough,
+					Style,
+					Subscript,
+					Superscript,
+					Table,
+					TableCaption,
+					TableCellProperties,
+					TableColumnResize,
+					TableOfContents,
+					TableProperties,
+					TableToolbar,
+					Template,
+					TextPartLanguage,
+					TextTransformation,
+					TodoList,
+					TrackChanges,
+					TrackChangesData,
+					TrackChangesPreview,
+					Underline,
+				],
+				balloonToolbar: ['comment', '|', 'bold', 'italic', '|', 'link', 'insertImage', '|', 'bulletedList', 'numberedList'],
+				cloudServices: {
+					tokenUrl: fetchUserToken,
+					webSocketUrl: CLOUD_SERVICES_WEBSOCKET_URL
+				},
+				collaboration: {
+					channelId: DOCUMENT_ID
+				},
+				comments: {
+					editorConfig: {
+						extraPlugins: [Autoformat, Bold, Italic, List, Mention],
+						mention: {
+							feeds: [
+								{
+									marker: '@',
+									feed: [
+										/* See: https://ckeditor.com/docs/ckeditor5/latest/features/mentions.html#comments-with-mentions */
+									]
+								}
+							]
+						}
+					}
+				},
+				documentOutline: {
+					container: editorOutlineRef.current
+				},
+				exportPdf: {
+					stylesheets: [
+						/* This path should point to the content stylesheets on your assets server. */
+						/* See: https://ckeditor.com/docs/ckeditor5/latest/features/converters/export-pdf.html */
+						'./export-style.css',
+						/* Export PDF needs access to stylesheets that style the content. */
+						'https://cdn.ckeditor.com/ckeditor5/45.1.0/ckeditor5.css',
+						'https://cdn.ckeditor.com/ckeditor5-premium-features/45.1.0/ckeditor5-premium-features.css'
+					],
+					fileName: 'export-pdf-demo.pdf',
+					converterOptions: {
+						format: 'A4',
+						margin_top: '20mm',
+						margin_bottom: '20mm',
+						margin_right: '12mm',
+						margin_left: '12mm',
+						page_orientation: 'portrait'
+					}
+				},
+				exportWord: {
+					stylesheets: [
+						/* This path should point to the content stylesheets on your assets server. */
+						/* See: https://ckeditor.com/docs/ckeditor5/latest/features/converters/export-word.html */
+						'./export-style.css',
+						/* Export Word needs access to stylesheets that style the content. */
+						'https://cdn.ckeditor.com/ckeditor5/45.1.0/ckeditor5.css',
+						'https://cdn.ckeditor.com/ckeditor5-premium-features/45.1.0/ckeditor5-premium-features.css'
+					],
+					fileName: 'export-word-demo.docx',
+					converterOptions: {
+						document: {
+							orientation: 'portrait',
+							size: 'A4',
+							margins: {
+								top: '20mm',
+								bottom: '20mm',
+								right: '12mm',
+								left: '12mm'
+							}
+						}
+					}
+				},
+				fontFamily: {
+					supportAllValues: true
+				},
+				fontSize: {
+					options: [10, 12, 14, 'default', 18, 20, 22],
+					supportAllValues: true
+				},
+				heading: {
+					options: [
+						{
+							model: 'paragraph',
+							title: 'Paragraph',
+							class: 'ck-heading_paragraph'
+						},
+						{
+							model: 'heading1',
+							view: 'h1',
+							title: 'Heading 1',
+							class: 'ck-heading_heading1'
+						},
+						{
+							model: 'heading2',
+							view: 'h2',
+							title: 'Heading 2',
+							class: 'ck-heading_heading2'
+						},
+						{
+							model: 'heading3',
+							view: 'h3',
+							title: 'Heading 3',
+							class: 'ck-heading_heading3'
+						},
+						{
+							model: 'heading4',
+							view: 'h4',
+							title: 'Heading 4',
+							class: 'ck-heading_heading4'
+						},
+						{
+							model: 'heading5',
+							view: 'h5',
+							title: 'Heading 5',
+							class: 'ck-heading_heading5'
+						},
+						{
+							model: 'heading6',
+							view: 'h6',
+							title: 'Heading 6',
+							class: 'ck-heading_heading6'
+						}
+					]
+				},
+				htmlSupport: {
+					allow: [
+						{
+							name: /^.*$/,
+							styles: true,
+							attributes: true,
+							classes: true
+						}
+					]
+				},
+				image: {
+					toolbar: [
+						'toggleImageCaption',
+						'imageTextAlternative',
+						'|',
+						'imageStyle:inline',
+						'imageStyle:wrapText',
+						'imageStyle:breakText',
+						'|',
+						'resizeImage',
+						'|'					]
+				},
+				initialData:
+					'<h2>Congratulations on setting up CKEditor 5! 🎉</h2>\n<p>\n\tYou\'ve successfully created a CKEditor 5 project. This powerful text editor\n\twill enhance your application, enabling rich text editing capabilities that\n\tare customizable and easy to use.\n</p>\n<h3>What\'s next?</h3>\n<ol>\n\t<li>\n\t\t<strong>Integrate into your app</strong>: time to bring the editing into\n\t\tyour application. Take the code you created and add to your application.\n\t</li>\n\t<li>\n\t\t<strong>Explore features:</strong> Experiment with different plugins and\n\t\ttoolbar options to discover what works best for your needs.\n\t</li>\n\t<li>\n\t\t<strong>Customize your editor:</strong> Tailor the editor\'s\n\t\tconfiguration to match your application\'s style and requirements. Or\n\t\teven write your plugin!\n\t</li>\n</ol>\n<p>\n\tKeep experimenting, and don\'t hesitate to push the boundaries of what you\n\tcan achieve with CKEditor 5. Your feedback is invaluable to us as we strive\n\tto improve and evolve. Happy editing!\n</p>\n<h3>Helpful resources</h3>\n<ul>\n\t<li>📝 <a href="https://portal.ckeditor.com/checkout?plan=free">Trial sign up</a>,</li>\n\t<li>📕 <a href="https://ckeditor.com/docs/ckeditor5/latest/installation/index.html">Documentation</a>,</li>\n\t<li>⭐️ <a href="https://github.com/ckeditor/ckeditor5">GitHub</a> (star us if you can!),</li>\n\t<li>🏠 <a href="https://ckeditor.com">CKEditor Homepage</a>,</li>\n\t<li>🧑‍💻 <a href="https://ckeditor.com/ckeditor-5/demo/">CKEditor 5 Demos</a>,</li>\n</ul>\n<h3>Need help?</h3>\n<p>\n\tSee this text, but the editor is not starting up? Check the browser\'s\n\tconsole for clues and guidance. It may be related to an incorrect license\n\tkey if you use premium features or another feature-related requirement. If\n\tyou cannot make it work, file a GitHub issue, and we will help as soon as\n\tpossible!\n</p>\n',
+				licenseKey: license,
+				link: {
+					addTargetToExternalLinks: true,
+					defaultProtocol: 'https://',
+					decorators: {
+						toggleDownloadable: {
+							mode: 'manual',
+							label: 'Downloadable',
+							attributes: {
+								download: 'file'
+							}
+						}
+					}
+				},
+				list: {
+					properties: {
+						styles: true,
+						startIndex: true,
+						reversed: true
+					}
+				},
+				mention: {
+					feeds: [
+						{
+							marker: '@',
+							feed: [
+								/* See: https://ckeditor.com/docs/ckeditor5/latest/features/mentions.html */
+							]
+						}
+					]
+				},
+				mergeFields: {
+					/* Read more: https://ckeditor.com/docs/ckeditor5/latest/features/merge-fields.html#configuration */
+				},
+				pagination: {
+					pageWidth: '21cm',
+					pageHeight: '29.7cm',
+					pageMargins: {
+						top: '20mm',
+						bottom: '20mm',
+						right: '12mm',
+						left: '12mm'
+					}
+				},
+				placeholder: 'Type or paste your content here!',
+				presenceList: {
+					container: editorPresenceRef.current
+				},
+				revisionHistory: {
+					editorContainer: editorContainerRef.current,
+					viewerContainer: editorRevisionHistoryRef.current,
+					viewerEditorElement: editorRevisionHistoryEditorRef.current,
+					viewerSidebarContainer: editorRevisionHistorySidebarRef.current,
+					resumeUnsavedRevision: true
+				},
+				sidebar: {
+					container: editorAnnotationsRef.current
+				},
+				style: {
+					definitions: [
+						{
+							name: 'Article category',
+							element: 'h3',
+							classes: ['category']
+						},
+						{
+							name: 'Title',
+							element: 'h2',
+							classes: ['document-title']
+						},
+						{
+							name: 'Subtitle',
+							element: 'h3',
+							classes: ['document-subtitle']
+						},
+						{
+							name: 'Info box',
+							element: 'p',
+							classes: ['info-box']
+						},
+						{
+							name: 'CTA Link Primary',
+							element: 'a',
+							classes: ['button', 'button--green']
+						},
+						{
+							name: 'CTA Link Secondary',
+							element: 'a',
+							classes: ['button', 'button--black']
+						},
+						{
+							name: 'Marker',
+							element: 'span',
+							classes: ['marker']
+						},
+						{
+							name: 'Spoiler',
+							element: 'span',
+							classes: ['spoiler']
+						}
+					]
+				},
+				table: {
+					contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells', 'tableProperties', 'tableCellProperties']
+				},
+				template: {
+					definitions: [
+						{
+							title: 'Introduction',
+							description: 'Simple introduction to an article',
+							icon: '<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">\n    <g id="icons/article-image-right">\n        <rect id="icon-bg" width="45" height="45" rx="2" fill="#A5E7EB"/>\n        <g id="page" filter="url(#filter0_d_1_507)">\n            <path d="M9 41H36V12L28 5H9V41Z" fill="white"/>\n            <path d="M35.25 12.3403V40.25H9.75V5.75H27.7182L35.25 12.3403Z" stroke="#333333" stroke-width="1.5"/>\n        </g>\n        <g id="image">\n            <path id="Rectangle 22" d="M21.5 23C21.5 22.1716 22.1716 21.5 23 21.5H31C31.8284 21.5 32.5 22.1716 32.5 23V29C32.5 29.8284 31.8284 30.5 31 30.5H23C22.1716 30.5 21.5 29.8284 21.5 29V23Z" fill="#B6E3FC" stroke="#333333"/>\n            <path id="Vector 1" d="M24.1184 27.8255C23.9404 27.7499 23.7347 27.7838 23.5904 27.9125L21.6673 29.6268C21.5124 29.7648 21.4589 29.9842 21.5328 30.178C21.6066 30.3719 21.7925 30.5 22 30.5H32C32.2761 30.5 32.5 30.2761 32.5 30V27.7143C32.5 27.5717 32.4391 27.4359 32.3327 27.3411L30.4096 25.6268C30.2125 25.451 29.9127 25.4589 29.7251 25.6448L26.5019 28.8372L24.1184 27.8255Z" fill="#44D500" stroke="#333333" stroke-linejoin="round"/>\n            <circle id="Ellipse 1" cx="26" cy="25" r="1.5" fill="#FFD12D" stroke="#333333"/>\n        </g>\n        <rect id="Rectangle 23" x="13" y="13" width="12" height="2" rx="1" fill="#B4B4B4"/>\n        <rect id="Rectangle 24" x="13" y="17" width="19" height="2" rx="1" fill="#B4B4B4"/>\n        <rect id="Rectangle 25" x="13" y="21" width="6" height="2" rx="1" fill="#B4B4B4"/>\n        <rect id="Rectangle 26" x="13" y="25" width="6" height="2" rx="1" fill="#B4B4B4"/>\n        <rect id="Rectangle 27" x="13" y="29" width="6" height="2" rx="1" fill="#B4B4B4"/>\n        <rect id="Rectangle 28" x="13" y="33" width="16" height="2" rx="1" fill="#B4B4B4"/>\n    </g>\n    <defs>\n        <filter id="filter0_d_1_507" x="9" y="5" width="28" height="37" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">\n            <feFlood flood-opacity="0" result="BackgroundImageFix"/>\n            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>\n            <feOffset dx="1" dy="1"/>\n            <feComposite in2="hardAlpha" operator="out"/>\n            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.29 0"/>\n            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_507"/>\n            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_507" result="shape"/>\n        </filter>\n    </defs>\n</svg>\n',
+							data: "<h2>Introduction</h2><p>In today's fast-paced world, keeping up with the latest trends and insights is essential for both personal growth and professional development. This article aims to shed light on a topic that resonates with many, providing valuable information and actionable advice. Whether you're seeking to enhance your knowledge, improve your skills, or simply stay informed, our comprehensive analysis offers a deep dive into the subject matter, designed to empower and inspire our readers.</p>"
+						}
+					]
+				}
+			}
+		};
+	}, [isLayoutReady]);
+
+	useEffect(() => {
+		if (editorConfig) {
+			configUpdateAlert(editorConfig);
+		}
+	}, [editorConfig]);
+
+	return (
+		<div className="main-container">
+			<div className="presence" ref={editorPresenceRef}></div>
+			<div
+				className="editor-container editor-container_document-editor editor-container_include-outline editor-container_include-annotations editor-container_include-pagination editor-container_include-style"
+				ref={editorContainerRef}
+			>
+				<div className="editor-container__menu-bar" ref={editorMenuBarRef}></div>
+				<div className="editor-container__toolbar" ref={editorToolbarRef}></div>
+				<div className="editor-container__editor-wrapper">
+					<div className="editor-container__sidebar" ref={editorOutlineRef}></div>
+					<div className="editor-container__editor">
+						<div ref={editorRef}>
+							{editorConfig && (
+								<CKEditor
+									onReady={editor => {
+										editorToolbarRef.current.appendChild(editor.ui.view.toolbar.element);
+										editorMenuBarRef.current.appendChild(editor.ui.view.menuBarView.element);
+									}}
+									onAfterDestroy={() => {
+										Array.from(editorToolbarRef.current.children).forEach(child => child.remove());
+										Array.from(editorMenuBarRef.current.children).forEach(child => child.remove());
+									}}
+									editor={DecoupledEditor}
+									config={editorConfig}
+								/>
+							)}
+						</div>
+					</div>
+					<div className="editor-container__sidebar" ref={editorAnnotationsRef}></div>
+				</div>
+			</div>
+			<div className="revision-history" ref={editorRevisionHistoryRef}>
+				<div className="revision-history__wrapper">
+					<div className="revision-history__editor" ref={editorRevisionHistoryEditorRef}></div>
+					<div className="revision-history__sidebar" ref={editorRevisionHistorySidebarRef}></div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+/**
+ * This function exists to remind you to update the config needed for premium features.
+ * The function can be safely removed. Make sure to also remove call to this function when doing so.
+ */
+function configUpdateAlert(config) {
+	if (configUpdateAlert.configUpdateAlertShown) {
+		return;
+	}
+
+	const isModifiedByUser = (currentValue, forbiddenValue) => {
+		if (currentValue === forbiddenValue) {
+			return false;
+		}
+
+		if (currentValue === undefined) {
+			return false;
+		}
+
+		return true;
+	};
+
+	const valuesToUpdate = [];
+
+	configUpdateAlert.configUpdateAlertShown = true;
+
+	if (!isModifiedByUser(config.licenseKey, '<YOUR_LICENSE_KEY>')) {
+		valuesToUpdate.push('LICENSE_KEY');
+	}
+
+	if (!isModifiedByUser(config.cloudServices?.tokenUrl, '<YOUR_CLOUD_SERVICES_TOKEN_URL>')) {
+		valuesToUpdate.push('CLOUD_SERVICES_TOKEN_URL');
+	}
+
+	if (!isModifiedByUser(config.cloudServices?.webSocketUrl, '<YOUR_CLOUD_SERVICES_WEBSOCKET_URL>')) {
+		valuesToUpdate.push('CLOUD_SERVICES_WEBSOCKET_URL');
+	}
+
+	if (valuesToUpdate.length) {
+		window.alert(
+			[
+				'Please update the following values in your editor config',
+				'to receive full access to Premium Features:',
+				'',
+				...valuesToUpdate.map(value => ` - ${value}`)
+			].join('\n')
+		);
+	}
+}
+
+
+===== ./frontend/src/lib/tokenFetcher.js =====
+import { getToken, performTokenRefresh } from '@/lib/auth';
+
+export class TokenFetch {
+  static async fetch(url, options = {}) {
+    // Ensure headers exist
+    options.headers = options.headers || {};
+    
+    // First attempt with current token
+    let token = await getToken();
+    if (token) {
+        options.headers.Authorization = `Bearer ${token}`;
+    }
+    let response = await fetch(url, options);
+    
+
+    if (token && response.status === 401) {
+        console.log('attempt token refresh')
+        token = await performTokenRefresh()
+        if (token) {
+            options.headers.Authorization = `Bearer ${token}`;
+        }
+        response = await fetch(url, options);
+    }
+
+    return response
+  }
+}
+===== ./frontend/src/lib/auth.js =====
+
+const { cookies } = require("next/headers")
+const { urlJoin } = require('./urlJoin')
+
+const DJANGO_API_URL = process.env.DJANGO_API_URL;
+const TOKEN_AGE = 3600
+const TOKEN_NAME = "auth-token"
+const TOKEN_REFRESH_NAME = "auth-refresh-token"
+
+export async function getToken(){
+    // api requests
+    const cookieStore = await cookies()
+    const myAuthToken = cookieStore.get(TOKEN_NAME)
+    return myAuthToken?.value
+}
+
+
+export async function getRefreshToken(){
+    // api requests
+    const cookieStore = await cookies()
+    const myAuthToken = cookieStore.get(TOKEN_REFRESH_NAME)
+    return myAuthToken?.value
+}
+
+export async function setToken(authToken){
+    // login
+    const cookieStore = await cookies()
+    const result = cookieStore.set({
+        name: TOKEN_NAME,
+        value: authToken,
+        httpOnly: true, // limit client-side js
+        sameSite: 'strict',
+        secure: process.env.NODE_ENV !== 'development',
+        maxAge: TOKEN_AGE,
+    })
+    return result
+}
+
+export async function setRefreshToken(authRefreshToken){
+    // login
+    const cookieStore = await cookies()
+    const result = cookieStore.set({
+        name: TOKEN_REFRESH_NAME,
+        value: authRefreshToken,
+        httpOnly: true, // limit client-side js
+        sameSite: 'strict',
+        secure: process.env.NODE_ENV !== 'development',
+        maxAge: TOKEN_AGE,
+    })
+    return result
+}
+
+export async function  deleteTokens() {
+    // logout
+    const cookieStore = await cookies()
+    cookieStore.delete(TOKEN_REFRESH_NAME)
+    cookieStore.delete(TOKEN_NAME)
+}
+
+
+export async function performTokenRefresh() {
+    try {
+      const refreshToken = await getRefreshToken();
+      const response = await fetch(urlJoin(DJANGO_API_URL, '/token/refresh/'), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          refresh: refreshToken
+        }),
+      });
+      if (!response.ok) {
+        throw new Error('Token refresh failed');
+      }
+      const data = await response.json();
+      const newAccessToken = data.access
+      const newRefreshToken = data.refresh
+      await setToken(newAccessToken)
+      await setRefreshToken(newRefreshToken)
+      return newAccessToken
+    } catch (error) {
+      throw new Error('Failed to refresh token: ' + error.message);
+    }
+  }
+===== ./frontend/src/lib/urlJoin.js =====
+/**
+ * Joins multiple URL parts and ensures no double slashes
+ * @param {string} base - The base URL
+ * @param {...string} parts - Additional URL parts to join
+ * @returns {string} The joined URL
+ */
+
+const APPEND_SLASH = `${process.env.APPEND_SLASH}` === 'true' ? true : `${process.env.APPEND_SLASH}` === 'false' ? false : true;
+
+export function urlJoin(base, ...parts) {
+  try {
+    // Start with the base URL
+    let url = new URL(base);
+    
+    // Flatten arrays and handle nested parts
+    const flatParts = parts.flat();
+    
+    const cleanParts = flatParts
+      .filter(Boolean)
+      .map(part => String(part).trim())
+      .filter(part => part !== '/');  // Filter out standalone slashes
+    
+    // Append parts to pathname instead of creating new URL
+    if (cleanParts.length > 0) {
+      url.pathname = [
+        url.pathname,
+        ...cleanParts
+      ].map(part => part.replace(/^\/+|\/+$/g, '')) // Remove leading/trailing slashes
+       .filter(Boolean)
+       .join('/');
+    }
+    
+    // Ensure pathname starts with /
+    if (!url.pathname.startsWith('/')) {
+      url.pathname = '/' + url.pathname;
+    }
+
+    // Append trailing slash if APPEND_SLASH is true
+    if (APPEND_SLASH && !url.pathname.endsWith('/')) {
+      url.pathname += '/';
+    }
+    
+    return url.toString();
+  } catch (error) {
+    throw new Error(`Invalid URL: ${error.message}`);
+  }
+}
+
+export default urlJoin;
+===== ./frontend/src/lib/fetcher.js =====
+const fetcher = async (url) => {
+    const res = await fetch(url, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    if (!res.ok) {
+        const error = new Error(res.status === 401 ? "Login required or permission is not allowed" : "An error occurred");
+        error.status = res.status;
+        throw error;
+    }
+    return res.json();
+};
+
+export default fetcher;
+===== ./frontend/src/lib/utils.js =====
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
+
+===== ./frontend/src/lib/getApiEndpoint.js =====
+import urlJoin from './urlJoin';
+
+const DJANGO_API_URL = process.env.DJANGO_API_URL;
+
+
+export default function getApiEndpoint(path, urlSearchString) {
+  const endpoint = urlJoin(DJANGO_API_URL, path);
+  const url = new URL(endpoint);
+  const searchString = urlSearchString ? `?${urlSearchString}` : '';
+  return url.toString() + searchString;
+}
+===== ./rav.yaml =====
+scripts:
+  ui:
+    - cd frontend
+    - npm run dev
+  ui-install:
+    - cd frontend
+    - npm install
+  api:
+    - cd backend/src
+    - ../../venv/bin/python manage.py runserver
+  api-migrate:
+    - cd backend/src 
+    - ../../venv/bin/python manage.py migrate
+  api-makemigrations:
+    - cd backend/src 
+    - ../../venv/bin/python manage.py makemigrations
+  api-install:
+    - cd backend 
+    - ../venv/bin/pip-compile src/requirements/dev.in --output-file requirements.dev.txt
+    - ../venv/bin/pip-compile src/requirements/prod.in --output-file requirements.txt
+    - ../venv/bin/pip install -r requirements.dev.txt
+    - ../venv/bin/pip install -r requirements.txt
+  generate-favicon:
+    # brew install imagemagick
+    - magick frontend/public/logo-favicon.png -resize 32x32 frontend/src/app/favicon.ico
+
+===== ./backend/gunicorn.conf.py =====
+import multiprocessing
+
+# Recommended: 2-4 workers per CPU core for Django
+cpu_count = multiprocessing.cpu_count()
+max_workers = 10
+workers = min(cpu_count * 2 + 1, max_workers)
+
+# Prevent stuck workers
+timeout = 60
+keepalive = 5
+
+# Graceful handling
+graceful_timeout = 30
+max_requests = 1000
+max_requests_jitter = 50
+
+# Logging
+loglevel = "info"  # debug in prod is too verbose
+errorlog = "-"
+accesslog = "-"
+
+# Custom access log format that includes host header
+access_log_format = (
+    '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s" host="%({Host}i)s"'
+)
+
+# Performance
+worker_class = "sync"  # Django works best with sync workers
+preload_app = True
+
+===== ./backend/railway.json =====
+{
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "./Dockerfile",
+    "watchPatterns": [
+      "cfe.toml",
+      "gunicorn.conf.py",
+      "requirements.txt",
+      "src/**",
+      "railway.toml",
+      "Dockerfile"
+    ]
+  },
+  "deploy": {
+    "healthcheckPath": "/api/healthz/",
+    "healthcheckTimeout": 300,
+    "startupTimeout": 300,
+    "restartPolicyType": "always",
+    "restartPolicyMaxRetries": 10
+  }
+}
+===== ./backend/src/googler/migrations/__init__.py =====
+
+===== ./backend/src/googler/services.py =====
+import uuid
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+def get_or_create_google_user(google_user_info):
+    email = google_user_info.get("email")
+    if not email:
+        raise ValueError("No email provided by Google")
+
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        # Create new user
+        user = User.objects.create_user(
+            email=email,
+            # first_name=google_user_info.get("given_name", ""),
+            # last_name=google_user_info.get("family_name", ""),
+        )
+        user.set_unusable_password()
+        # You might want to mark this user as having been created through Google OAuth
+        user.save()
+
+    return user
+===== ./backend/src/googler/models.py =====
+from django.db import models
+
+# Create your models here.
+
+===== ./backend/src/googler/security.py =====
+import base64
+import hashlib
+import os
+
+def generate_state():
+    state = base64.urlsafe_b64encode(os.urandom(32)).decode("utf-8").replace("=", "")
+    return state
+
+def generate_pkce_pair():
+    """Generate PKCE code verifier and challenge pair."""
+    code_verifier = base64.urlsafe_b64encode(os.urandom(40)).decode("utf-8")
+    code_verifier = code_verifier.replace("=", "")  # Remove padding
+
+    code_challenge = hashlib.sha256(code_verifier.encode("utf-8")).digest()
+    code_challenge = base64.urlsafe_b64encode(code_challenge).decode("utf-8")
+    code_challenge = code_challenge.replace("=", "")  # Remove padding
+
+    return code_verifier, code_challenge
+
+===== ./backend/src/googler/__init__.py =====
+
+===== ./backend/src/googler/apps.py =====
+from django.apps import AppConfig
+
+
+class GooglerConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'googler'
+
+===== ./backend/src/googler/schemas.py =====
+from ninja import Schema
+
+
+class GoogleLoginSchema(Schema):
+    redirect_url: str
+
+
+class GoogleCallbackSchema(Schema):
+    code: str
+    state: str
+===== ./backend/src/googler/admin.py =====
+from django.contrib import admin
+
+# Register your models here.
+
+===== ./backend/src/googler/tests.py =====
+from django.test import TestCase
+
+# Create your tests here.
+
+===== ./backend/src/googler/urls.py =====
+from django.urls import path
+
+from googler import views
+
+app_name = 'googler'
+urlpatterns = [
+    path('login/', views.google_login_view, name='login'),
+    path('callback/', views.google_login_callback_view, name='callback'),
+]
+
+===== ./backend/src/googler/oauth.py =====
+from urllib.parse import urljoin, urlencode
+from django.conf import settings
+from django.core.cache import cache
+from google.auth.transport import requests as google_requests
+from google.oauth2 import id_token
+from django.urls import reverse
+
+import requests
+
+from . import security
+
+GOOGLE_AUTH_CACHE_KEY_PREFIX = "google:auth:state"
+GOOGLE_CLIENT_ID = settings.GOOGLE_CLIENT_ID
+GOOGLE_SECRET_KEY = settings.GOOGLE_SECRET_KEY
+GOOGLE_AUTH_BASE_URL = settings.GOOGLE_AUTH_BASE_URL
+
+def get_google_auth_callback_path():
+    return reverse("googler:callback")
+
+
+def get_google_oauth_callback_url(drop_https=False, force_https=False):
+    callback_path = getattr(settings, 'GOOGLE_AUTH_CALLBACK_PATH', None) or get_google_auth_callback_path()
+    url =  urljoin(GOOGLE_AUTH_BASE_URL, callback_path)
+    if drop_https:
+        url = url.replace("https://", "http://")
+    if force_https:
+        url = url.replace("http://", "https://")
+    return url
+
+
+def generate_auth_url():
+    redirect_uri = get_google_oauth_callback_url()
+    # public state item
+    state = security.generate_state()
+
+    # private, public
+    code_verifier, code_challenge = security.generate_pkce_pair()
+    # request.session['some_val'] = code_verifier
+
+    cache_key = f"{GOOGLE_AUTH_CACHE_KEY_PREFIX}:{state}"
+    # use redis caching key-val
+    cache.set(cache_key, code_verifier, 30)
+    # cache.get(cache_key)
+
+    # google cloud auth platform client id
+    google_auth_client_id = GOOGLE_CLIENT_ID
+
+    scope = " ".join([
+        "openid",
+        "email", 
+        "profile",
+    ])
+
+    auth_params = {
+        "client_id": google_auth_client_id,
+        "redirect_uri": redirect_uri, 
+        "response_type": "code",
+        "scope": scope,
+        "state": state,
+        "code_challenge": code_challenge,
+        "code_challenge_method": "S256",
+        "access_type": "offline",
+        # "prompt": "consent",
+        "prompt": "select_account",
+    }
+    encoded_params = urlencode(auth_params)
+    google_oauth_url = "https://accounts.google.com/o/oauth2/v2/auth"
+    return urljoin(google_oauth_url, f"?{encoded_params}")
+
+
+def verify_google_oauth_callback(state, code):
+    redirect_uri = get_google_oauth_callback_url()
+    cache_key = f"{GOOGLE_AUTH_CACHE_KEY_PREFIX}:{state}"
+    code_verifier = cache.get(cache_key)
+    if code_verifier is None or code is None or state is None:
+        raise Exception("Invalid code or expired code.")
+
+    token_endpoint = "https://oauth2.googleapis.com/token"
+    token_data = {
+        "client_id": GOOGLE_CLIENT_ID,
+        "client_secret": GOOGLE_SECRET_KEY,
+        "redirect_uri": redirect_uri,
+        "grant_type": "authorization_code",
+        "code": code,
+        "code_verifier": code_verifier,
+    }
+    r = requests.post(token_endpoint, data=token_data)
+    r.raise_for_status()
+    return r.json()
+
+
+def verify_token_json(token_json):
+    id_token_jwt = token_json.get('id_token')
+    google_user_info = id_token.verify_oauth2_token(
+        id_token_jwt, google_requests.Request(), GOOGLE_CLIENT_ID
+    )
+    if google_user_info["iss"] not in [
+        "accounts.google.com",
+        "https://accounts.google.com",
+    ]:
+        raise Exception("Invalid issuer")
+    return google_user_info
+===== ./backend/src/accounts/migrations/__init__.py =====
+
+===== ./backend/src/accounts/migrations/0001_initial.py =====
+# Generated by Django 5.1.5 on 2025-02-27 18:20
+
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='MyUser',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('password', models.CharField(max_length=128, verbose_name='password')),
+                ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
+                ('email', models.EmailField(max_length=255, unique=True, verbose_name='email address')),
+                ('is_active', models.BooleanField(default=True)),
+                ('is_admin', models.BooleanField(default=False)),
+            ],
+            options={
+                'abstract': False,
+            },
+        ),
+    ]
+
+===== ./backend/src/accounts/models.py =====
+from django.db import models
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+
+
+class MyUserManager(BaseUserManager):
+    def create_user(self, email, password=None, is_active:bool = True):
+        """
+        Creates and saves a User with the given email and password.
+        """
+        if not email:
+            raise ValueError("Users must have an email address")
+
+        user = self.model(
+            email=self.normalize_email(email),
+        )
+
+        user.set_password(password)
+        user.is_active = is_active
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password=None):
+        """
+        Creates and saves a superuser with the given email and password.
+        """
+        user = self.create_user(
+            email,
+            password=password,
+        )
+        user.is_admin = True
+        user.save(using=self._db)
+        return user
+
+
+class MyUser(AbstractBaseUser):
+    email = models.EmailField(
+        verbose_name="email address",
+        max_length=255,
+        unique=True,
+    )
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+
+    objects = MyUserManager()
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        # Simplest possible answer: All admins are staff
+        return self.is_admin
+    
+    @property
+    def display_name(self):
+        email_user = self.email.split("@")[0]
+        return f"{email_user}"
+===== ./backend/src/accounts/__init__.py =====
+
+===== ./backend/src/accounts/apps.py =====
+from django.apps import AppConfig
+
+
+class AccountsConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'accounts'
+
+===== ./backend/src/accounts/api.py =====
+import jwt # django-ninja
+from datetime import datetime, timezone
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from helpers.api.auth.permissions import user_required
+
+
+from ninja import Router 
+
+User = get_user_model()
+
+CKEDITOR_ENVIRONMENT_ID = "LKKFMzx-HkDK90MFkYFB"
+
+def get_user_token(user_id):
+    try:
+        user_instance = User.objects.get(id=user_id)
+    except Exception:
+        raise Exception("User failed")
+
+    username = f"{user_instance.display_name}"
+    iat = int(datetime.now(timezone.utc).timestamp())
+    algo = "HS256"
+    headers = {
+        "typ": "JWT",
+        "alg": algo
+    }
+    payload = {
+        "aud": f"{CKEDITOR_ENVIRONMENT_ID}",
+        "iat": iat,
+        "sub": username,
+        "user": {
+            "email": f"{user_instance.email}",
+            "name": f"{user_instance.display_name}",
+        },
+        "auth": {
+            "collaboration": {
+                "*": {
+                    "role": "writer"
+                }
+            }
+        }
+    }
+    signed_token = jwt.encode(
+        payload=payload,
+        key=settings.CKEDITOR_ACCESS_CREDS,
+        # key=settings.SECRET_KEY,
+        algorithm=algo,
+        headers=headers,
+    )
+    return signed_token
+
+# users are required
+router = Router(auth=user_required)
+
+
+@router.get("/ckeditor/token/")
+def ckeditor_token_view(request):
+    user = request.user
+    token = get_user_token(user.id)
+    return {"myUserToken": token}
+===== ./backend/src/accounts/admin.py =====
+from django import forms
+from django.contrib import admin
+from django.contrib.auth.models import Group
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.core.exceptions import ValidationError
+
+from .models import MyUser
+
+
+class UserCreationForm(forms.ModelForm):
+    """A form for creating new users. Includes all the required
+    fields, plus a repeated password."""
+
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label="Password confirmation", widget=forms.PasswordInput
+    )
+
+    class Meta:
+        model = MyUser
+        fields = ["email", ]
+
+    def clean_password2(self):
+        # Check that the two password entries match
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise ValidationError("Passwords don't match")
+        return password2
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user
+
+
+class UserChangeForm(forms.ModelForm):
+    """A form for updating users. Includes all the fields on
+    the user, but replaces the password field with admin's
+    disabled password hash display field.
+    """
+
+    password = ReadOnlyPasswordHashField()
+
+    class Meta:
+        model = MyUser
+        fields = ["email", "password",  "is_active", "is_admin"]
+
+
+class UserAdmin(BaseUserAdmin):
+    # The forms to add and change user instances
+    form = UserChangeForm
+    add_form = UserCreationForm
+
+    # The fields to be used in displaying the User model.
+    # These override the definitions on the base UserAdmin
+    # that reference specific fields on auth.User.
+    list_display = ["email",  "is_admin"]
+    list_filter = ["is_admin"]
+    fieldsets = [
+        (None, {"fields": ["email", "password"]}),
+        ("Personal info", {"fields": []}),
+        ("Permissions", {"fields": ["is_active", "is_admin"]}),
+    ]
+    # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
+    # overrides get_fieldsets to use this attribute when creating a user.
+    add_fieldsets = [
+        (
+            None,
+            {
+                "classes": ["wide"],
+                "fields": ["email",  "password1", "password2"],
+            },
+        ),
+    ]
+    search_fields = ["email"]
+    ordering = ["email"]
+    filter_horizontal = []
+
+
+# Now register the new UserAdmin...
+admin.site.register(MyUser, UserAdmin)
+# ... and, since we're not using Django's built-in permissions,
+# unregister the Group model from admin.
+admin.site.unregister(Group)
+===== ./backend/src/accounts/tests.py =====
+from django.test import TestCase
+
+# Create your tests here.
+
+===== ./backend/src/accounts/views.py =====
+from django.shortcuts import render
+
+# Create your views here.
+
+===== ./backend/src/ai/__init__.py =====
+
+===== ./backend/src/ai/api.py =====
+from typing import Optional, Any
+from ninja import Schema, Router
+import random
+import time
+from helpers.api.auth.permissions import user_required
+
+router = Router(auth=user_required)
+
+class AIPayload(Schema):
+    query: str
+    context: Optional[Any]
+
+
+# /api/ai/
+@router.post("/")
+def ai_echo_view(request, payload: AIPayload):
+    # openai
+    # claude
+    # langchain
+    # langgraph
+    # pydantic ai
+    # python -> llm
+    sleep_for = 3.0 * ((random.randint(1,20) / 10))
+    time.sleep(sleep_for)
+    print(payload.query, payload.context, type(payload.context))
+    return {"message": f"AI Says: {payload.query}"}
+===== ./backend/src/manage.py =====
+#!/usr/bin/env python
+"""Django's command-line utility for administrative tasks."""
+
+import os
+import sys
+
+
+def main():
+    """Run administrative tasks."""
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "company.settings")
+    try:
+        from django.core.management import execute_from_command_line
+    except ImportError as exc:
+        raise ImportError(
+            "Couldn't import Django. Are you sure it's installed and "
+            "available on your PYTHONPATH environment variable? Did you "
+            "forget to activate a virtual environment?"
+        ) from exc
+    execute_from_command_line(sys.argv)
+
+
+if __name__ == "__main__":
+    main()
+
+===== ./backend/src/documents/migrations/0004_alter_docuser_role.py =====
+# Generated by Django 5.1.5 on 2025-05-20 02:30
+
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+    dependencies = [
+        ("documents", "0003_docuser_role"),
+    ]
+
+    operations = [
+        migrations.AlterField(
+            model_name="docuser",
+            name="role",
+            field=models.CharField(
+                choices=[
+                    ("author", "Author"),
+                    ("officer", "Officer"),
+                    ("user", "User"),
+                ],
+                default="user",
+                max_length=20,
+            ),
+        ),
+    ]
+
+===== ./backend/src/documents/migrations/__init__.py =====
+
+===== ./backend/src/documents/migrations/0002_docuser.py =====
+# Generated by Django 5.1.5 on 2025-03-06 00:01
+
+import django.db.models.deletion
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('documents', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='DocUser',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('active', models.BooleanField(default=True)),
+                ('inactive_at', models.DateTimeField(blank=True, null=True)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('doc', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='documents.doc')),
+                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+    ]
+
+===== ./backend/src/documents/migrations/0003_docuser_role.py =====
+# Generated by Django 5.1.5 on 2025-05-20 02:30
+
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+    dependencies = [
+        ("documents", "0002_docuser"),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name="docuser",
+            name="role",
+            field=models.CharField(
+                choices=[
+                    ("author", "Author"),
+                    ("officer", "Officer"),
+                    ("user", "user"),
+                ],
+                default="user",
+                max_length=20,
+            ),
+        ),
+    ]
+
+===== ./backend/src/documents/migrations/0001_initial.py =====
+# Generated by Django 5.1.5 on 2025-02-28 21:09
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Doc',
+            fields=[
+                ('id', models.UUIDField(db_index=True, default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('title', models.CharField(blank=True, max_length=120, null=True)),
+                ('content', models.TextField(blank=True, null=True)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+    ]
+
+===== ./backend/src/documents/services.py =====
+from django.db.models import Q
+from django.core.cache import cache
+
+from . import exceptions
+from .models import Doc
+
+DOC_CACHE_KEY = "documents:list:{user_id}"
+DOC_CACHE_TIMEOUT = 300
+
+
+def create_document(user=None, title=None):
+    if user is None or title is None:
+        return None
+    return Doc.objects.create(user=user, title=title)
+
+
+def list_documents(user=None, force=False):
+    if user is None:
+        return []
+    cache_key = DOC_CACHE_KEY.format(user_id=user.id)
+    cached_qs = cache.get(cache_key)
+    if cached_qs and not force:
+        return cached_qs
+    qs = Doc.objects.filter(
+        Q(user=user) |
+        Q(docuser__user=user)
+    ).values('id', 'content', 'title')
+    cache.set(cache_key, qs, timeout=DOC_CACHE_TIMEOUT)
+    return qs
+
+def get_document(user=None, document_id=None):
+    if user is None or document_id is None:
+        return None
+    try:
+        obj = Doc.objects.get(id=document_id)
+    except Doc.DoesNotExist:
+        raise exceptions.DocumentNotFound(f"{document_id} not found.")
+    except:
+        raise exceptions.DocumentNotFound(f"{document_id} not found.")
+    is_owner = obj.user == user
+    is_doc_user = obj.docuser_set.filter(user=user, active=True).exists()
+    has_permission = is_owner or is_doc_user
+    if not has_permission:
+        raise exceptions.UserNoPermissionNotAllowed(f"{user} needs access.")
+    return obj
+===== ./backend/src/documents/models.py =====
+import uuid
+from django.conf import settings
+from django.db import models
+from django.utils import timezone
+
+# Create your models here.
+
+User = settings.AUTH_USER_MODEL
+
+class Doc(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, db_index=True, editable=False)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    title = models.CharField(max_length=120, blank=True, null=True)
+    content = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class DocUser(models.Model):
+    doc = models.ForeignKey(Doc, null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    ROLE_CHOICES = [
+        ('author', 'Author'),
+        ('officer', 'Officer'),
+        ('user', 'User'),
+    ]
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='user')
+    active = models.BooleanField(default=True)
+    inactive_at = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if not self.active and self.inactive_at is None:
+            self.inactive_at = timezone.now()
+        super().save(*args, **kwargs)
+===== ./backend/src/documents/__init__.py =====
+
+===== ./backend/src/documents/apps.py =====
+from django.apps import AppConfig
+
+
+class DocumentsConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'documents'
+
+===== ./backend/src/documents/api.py =====
+from typing import List
+from ninja import Router
+from ninja.errors import HttpError
+
+from helpers.api.auth.permissions import user_required
+
+from .models import Doc
+from .schemas import DocSchema, DocUpdateSchema, DocCreateSchema
+from . import exceptions as doc_exceptions
+from . import services as doc_services
+
+router = Router()
+
+
+@router.get("/", response=List[DocSchema], auth=user_required)
+def document_list_view(request):
+    qs = doc_services.list_documents(request.user)
+    return qs
+
+@router.post("/", response={201: DocSchema}, auth=user_required)
+def document_create_view(request, payload:DocCreateSchema):
+    obj = doc_services.create_document(user=request.user, title=payload.title)
+    if obj is None:
+        raise HttpError(400, "Invalid data, try again.")
+    return 201, obj
+
+def http_document_detail(request, document_id):
+    try:
+        obj = doc_services.get_document(user=request.user, document_id=document_id)
+    except doc_exceptions.DocumentNotFound as e:
+        raise HttpError(404, f"{e}")
+    except doc_exceptions.UserNoPermissionNotAllowed as e:
+        raise HttpError(403, f"{e}")
+    except:
+        raise HttpError(500, "Unknown server error")
+    if obj is None:
+        raise HttpError(404, f"{document_id} is not found")
+    return obj
+
+@router.get("/{document_id}/", response=DocSchema, auth=user_required)
+def document_detail_view(request, document_id): 
+    obj = http_document_detail(request, document_id)
+    return obj
+
+
+@router.put("/{document_id}/", response=DocSchema, auth=user_required)
+def document_update_view(request, document_id, payload:DocUpdateSchema): 
+    obj = http_document_detail(request, document_id)
+    update_data = payload.model_dump()
+    for key, val in update_data.items():
+        setattr(obj, key, val)
+    # obj.last_updated_by = request.user
+    obj.save()
+    return obj
+
+
+"""
+@router.delete("/{document_id}/", response={204: Any}, auth=user_required)
+def document_update_view(request, document_id, payload:DocUpdateSchema): 
+    obj = http_document_detail(request, document_id)
+    return 204, "Item delete"
+"""
+===== ./backend/src/documents/schemas.py =====
+import uuid
+from ninja import Schema, Field
+
+# Schema -> Pydantic BaseModel
+
+class DocSchema(Schema):
+    id: uuid.UUID
+    title: str
+    content: str | None = Field(default="")
+
+
+class DocCreateSchema(Schema):
+    title: str
+
+class DocUpdateSchema(Schema):
+    title: str
+    content: str
+===== ./backend/src/documents/admin.py =====
+from django.contrib import admin
+
+# Register your models here.
+from .models import Doc, DocUser
+
+
+class DocUserInline(admin.TabularInline):
+    model = DocUser
+    extra = 0
+
+class DocAdmin(admin.ModelAdmin):
+    inlines = [DocUserInline]
+
+
+admin.site.register(Doc, DocAdmin)
+===== ./backend/src/documents/exceptions.py =====
+class DocumentNotFound(Exception):
+    pass
+
+class UserNoPermissionNotAllowed(Exception):
+    pass
+===== ./backend/src/documents/tests.py =====
+from django.test import TestCase
+
+# Create your tests here.
+
+===== ./backend/src/documents/views.py =====
+from django.shortcuts import render
+
+# Create your views here.
+
+===== ./backend/src/profiles/signals.py =====
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+from django.conf import settings
+from .models import Profile
+
+User = settings.AUTH_USER_MODEL # "auth.User"
+
+
+@receiver(post_save, sender=User)
+def create_user_profile_post_save(sender, instance, created, *args, **kwargs):
+    if created:
+        Profile.objects.get_or_create(user=instance)
+===== ./backend/src/profiles/migrations/__init__.py =====
+
+===== ./backend/src/profiles/migrations/0001_initial.py =====
+# Generated by Django 5.1.5 on 2025-02-27 17:54
+
+import django.db.models.deletion
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Profile',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('bio', models.TextField(blank=True, null=True)),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+    ]
+
+===== ./backend/src/profiles/models.py =====
+from django.conf import settings
+from django.db import models
+
+User = settings.AUTH_USER_MODEL # "auth.User"
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(blank=True, null=True)
+===== ./backend/src/profiles/__init__.py =====
+
+===== ./backend/src/profiles/apps.py =====
+from django.apps import AppConfig
+
+
+class ProfilesConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'profiles'
+
+
+    def ready(self):
+        import profiles.signals # noqa
+
+===== ./backend/src/profiles/admin.py =====
+from django.contrib import admin
+
+# Register your models here.
+from .models import Profile
+
+admin.site.register(Profile)
+===== ./backend/src/profiles/tests.py =====
+from django.test import TestCase
+
+# Create your tests here.
+
+===== ./backend/src/profiles/views.py =====
+from django.shortcuts import render
+
+# Create your views here.
+
+===== ./backend/src/helpers/dotenv/__init__.py =====
+
+===== ./backend/src/helpers/dotenv/loader.py =====
+# using python-decouple to load environment variables
+import logging
+import pathlib
+from functools import lru_cache
+
+from decouple import Config, RepositoryEnv
+
+THIS_DIR = pathlib.Path(__file__).parent
+HELPERS_DIR = THIS_DIR.parent  # src/helpers/
+BASE_DIR = HELPERS_DIR.parent  # src/
+PROJECT_DIR = BASE_DIR.parent  # /
+
+logger = logging.getLogger(__name__)
+
+
+@lru_cache(maxsize=1)
+def get_config(allowed_envs: list[str] = [".env", ".env.local"]):
+    for env in allowed_envs:
+        path = PROJECT_DIR / env
+        if path.exists():
+            try:
+                logger.info(f"Loading {env}")
+                return Config(RepositoryEnv(path))
+            except FileNotFoundError:
+                continue
+    from decouple import config
+
+    return config
+
+
+config = get_config()
+
+===== ./backend/src/helpers/__init__.py =====
+from .dotenv.loader import config
+
+__all__ = ["config"]
+
+===== ./backend/src/helpers/api/auth/controllers.py =====
+from ninja_extra import api_controller, http_post
+from ninja_jwt.controller import TokenObtainPairController
+from ninja_jwt.schema_control import SchemaControl
+from ninja_jwt.settings import api_settings
+
+schema = SchemaControl(api_settings)
+
+
+class DjangoNextTokenObtainPairController(TokenObtainPairController):
+    @http_post(
+        "/pair/",
+        response=schema.obtain_pair_schema.get_response_schema(),
+        url_name="token_obtain_pair_slash",
+        operation_id="token_obtain_pair",
+    )
+    def obtain_token(self, user_token: schema.obtain_pair_schema):
+        user_token.check_user_authentication_rule()
+        return user_token.to_response_schema()
+
+    @http_post(
+        "/refresh/",
+        response=schema.obtain_pair_refresh_schema.get_response_schema(),
+        url_name="token_refresh_slash",
+        operation_id="token_refresh",
+    )
+    def refresh_token(self, refresh_token: schema.obtain_pair_refresh_schema):
+        return refresh_token.to_response_schema()
+
+
+@api_controller("token", tags=["Auth"])
+class DjangoNextCustomController(DjangoNextTokenObtainPairController):
+    """obtain token and refresh_token with support for trailing slashes"""
+
+    pass
+    pass
+
+===== ./backend/src/helpers/api/auth/__init__.py =====
+
+===== ./backend/src/helpers/api/auth/schemas.py =====
+import re
+
+from django.contrib.auth import get_user_model
+from django.core.validators import EmailValidator
+from ninja import Schema
+from ninja.errors import HttpError
+
+
+class BaseUserSchema(Schema):
+    """Base schema with common validation methods"""
+
+    @staticmethod
+    def validate_username(value: str | None) -> str | None:
+        if value is None:
+            return None
+        if len(value) < 3:
+            raise HttpError(400, "Username must be at least 3 characters long")
+        if not re.match("^[a-zA-Z0-9_]+$", value):
+            raise HttpError(
+                400, "Username can only contain letters, numbers, and underscores"
+            )
+        return value
+
+    @staticmethod
+    def validate_email(value: str | None) -> str | None:
+        if value is None:
+            return None
+        email_validator = EmailValidator()
+        try:
+            email_validator(value)
+        except:
+            raise HttpError(400, "Invalid email address")
+        return value
+
+    @staticmethod
+    def validate_password(value: str) -> str:
+        if len(value) < 8:
+            raise HttpError(400, "Password must be at least 8 characters long")
+        if not any(c.isupper() for c in value):
+            raise HttpError(400, "Password must contain at least one uppercase letter")
+        if not any(c.islower() for c in value):
+            raise HttpError(400, "Password must contain at least one lowercase letter")
+        if not any(c.isdigit() for c in value):
+            raise HttpError(400, "Password must contain at least one number")
+        return value
+
+    def check_availability(self, username: str | None, email: str | None) -> None:
+        User = get_user_model()
+        conditions = []
+
+        if username:
+            conditions.append(User.objects.filter(username__iexact=username).exists())
+        if email:
+            conditions.append(User.objects.filter(email__iexact=email).exists())
+
+        if any(conditions):
+            raise HttpError(
+                400, "Username and/or email are not available. Please try again"
+            )
+
+
+class BaseRegistrationSchema(BaseUserSchema):
+    """Base registration schema with common password validation"""
+
+    password: str
+    confirm_password: str
+
+    def validate(self, data: dict) -> dict:
+        if data["password"] != data["confirm_password"]:
+            raise HttpError(400, "Passwords do not match")
+        self.check_availability(username=data.get("username"), email=data.get("email"))
+        return data
+
+
+class UsernameOnlySchema(BaseRegistrationSchema):
+    username: str
+
+
+class EmailOnlySchema(BaseRegistrationSchema):
+    email: str
+
+
+class UsernameMandatoryEmailOptionalSchema(BaseRegistrationSchema):
+    username: str
+    email: str | None = None
+
+
+class EmailMandatoryUsernameOptionalSchema(BaseRegistrationSchema):
+    username: str | None = None
+    email: str
+
+
+class UsernameMandatoryEmailMandatorySchema(BaseRegistrationSchema):
+    username: str
+    email: str
+
+
+
+class EmailLoginSchema(BaseUserSchema):
+    email: str
+    password: str
+===== ./backend/src/helpers/api/auth/permissions.py =====
+from django.http import HttpRequest
+from ninja_jwt.authentication import JWTAuth
+
+
+def allow_anon(request: HttpRequest) -> bool:
+    """Check if user is anonymous (not authenticated)"""
+    return not request.user.is_authenticated
+
+
+def verify_authenticated(request: HttpRequest) -> bool:
+    """Check if user is authenticated"""
+    return request.user.is_authenticated
+
+
+def allow_staff(request: HttpRequest) -> bool:
+    """Check if user is staff member"""
+    return request.user.is_authenticated and request.user.is_staff
+
+
+def allow_superuser(request: HttpRequest) -> bool:
+    """Check if user is superuser"""
+    return request.user.is_authenticated and request.user.is_superuser
+
+
+def allow_any(request: HttpRequest) -> bool:
+    """Allow both authenticated and anonymous users"""
+    return True
+
+
+# Common permission combinations
+user_required = [JWTAuth(), verify_authenticated]
+anon_required = [JWTAuth(), allow_anon]
+staff_required = [JWTAuth(), allow_staff]
+superuser_required = [JWTAuth(), allow_superuser]
+user_or_anon = [JWTAuth(), allow_any]  # Allows both authenticated and anonymous users
+
+===== ./backend/src/helpers/api/__init__.py =====
+
+===== ./backend/src/helpers/api/users/__init__.py =====
+
+===== ./backend/src/helpers/api/users/schemas.py =====
+from ninja import Schema
+
+
+class UserSchema(Schema):
+    username: str  | None
+    email: str
+    is_authenticated: bool
+    access_token: str | None
+    refresh_token: str | None
+
+===== ./backend/src/company/asgi.py =====
+"""
+ASGI config for comapny project.
+
+It exposes the ASGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/5.1/howto/deployment/asgi/
+"""
+
+import os
+
+from django.core.asgi import get_asgi_application
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "company.settings")
+
+application = get_asgi_application()
+
+===== ./backend/src/company/__init__.py =====
+
+===== ./backend/src/company/api.py =====
+from django.contrib.auth import get_user_model, authenticate
+from helpers.api.auth.controllers import DjangoNextCustomController
+from helpers.api.auth.permissions import anon_required, user_or_anon
+from helpers.api.auth.schemas import (
+    UsernameMandatoryEmailMandatorySchema,
+    EmailLoginSchema
+)
+from helpers.api.users.schemas import UserSchema
+from ninja.errors import HttpError
+from ninja_extra import NinjaExtraAPI
+from ninja_extra.permissions import AllowAny
+from ninja_jwt.authentication import JWTAuth
+from ninja_jwt.controller import NinjaJWTDefaultController
+from ninja_jwt.tokens import RefreshToken
+
+from django.conf import settings
+from django.contrib.auth import login
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+
+from googler import (
+    oauth as googler_oauth, 
+    services as googler_services, 
+    schemas as googler_schemas
+)
+
+from accounts.api import router as accounts_router
+from ai.api import router as ai_router
+from documents.api import router as document_router
+
+LOGIN_REDIRECT_URL = settings.LOGIN_REDIRECT_URL
+
+
+User = get_user_model()
+
+api = NinjaExtraAPI(auth=user_or_anon)
+
+# adds /api/token/refresh/
+api.register_controllers(DjangoNextCustomController)
+api.add_router('/accounts', accounts_router)
+api.add_router('/ai', ai_router)
+api.add_router('/documents', document_router)
+
+
+@api.get("/hello/", auth=user_or_anon)
+def hello(request):
+    print(request.auth, request.user)
+    if request.auth:
+        user = request.user 
+        if user.is_authenticated:
+            return {
+                "username": user.display_name, 
+                "email": user.email,
+            }
+    # print(request)
+    return {"message": "Hello World"}
+
+
+@api.post("/login/", response=UserSchema, auth=anon_required)
+def login(request, payload: EmailLoginSchema):
+    user = authenticate(email=payload.email, password=payload.password)
+    if not user:
+        raise HttpError(400, "Could not login user try again")
+    if not user.is_active:
+       raise HttpError(400, "User is not active")
+    try:
+        token = RefreshToken.for_user(user)
+        return {
+            "username": user.display_name, 
+            "email": user.email,
+            "is_authenticated": True,
+            "access_token": str(token.access_token),
+            "refresh_token": str(token),
+        }
+    except Exception as e:
+        raise HttpError(500, "Could not create user. Please try again later")
+
+
+@api.post("/signup/", response=UserSchema, auth=anon_required)
+def signup(request, payload: EmailLoginSchema):
+    try:
+        user = User.objects.create_user(
+            email=payload.email,
+            password=payload.password,
+            is_active=True,
+        )
+        user.save()
+        token = RefreshToken.for_user(user)
+        return {
+            "username": user.display_name,
+            "email": user.email,
+            "is_authenticated": True,
+            "access_token": str(token.access_token),
+            "refresh_token": str(token),
+        }
+    except Exception as e:
+        raise HttpError(500, "Could not create user. Please try again later")
+
+
+
+# /api/google/login/
+@api.get("/google/login/", 
+        response=googler_schemas.GoogleLoginSchema, 
+        auth=anon_required)
+def google_login_view(request):
+    google_oauth2_url = googler_oauth.generate_auth_url()
+    return {
+        "redirect_url": google_oauth2_url
+    }
+
+@api.post("/google/callback/", 
+        response=UserSchema, 
+        auth=anon_required)
+def google_login_callback_view(request, payload: googler_schemas.GoogleCallbackSchema):
+    # print(request.GET)
+    state = payload.state
+    code = payload.code
+    try:
+        token_json = googler_oauth.verify_google_oauth_callback(state, code)
+    except Exception as e:
+        raise HttpError(500, "Could login user. Please try again later")
+    google_user_info = googler_oauth.verify_token_json(token_json)
+    user = googler_services.get_or_create_google_user(google_user_info)
+    if not user:
+        raise HttpError(400, "Could not login user try again")
+    if not user.is_active:
+       raise HttpError(400, "User is not active")
+    token = RefreshToken.for_user(user)
+    return {
+        "username": user.display_name,
+        "email": user.email,
+        "is_authenticated": True,
+        "access_token": str(token.access_token),
+        "refresh_token": str(token),
+    }
+
+
+===== ./backend/src/company/settings.py =====
+"""
+Django settings for company project using Django 5.1.5.
+"""
+
+from pathlib import Path
+from datetime import timedelta
+from django.core.management.utils import get_random_secret_key
+
+# uses python-decouple
+# loads environment variables from .env.local and .env
+from helpers import config
+
+from .installed import INSTALLED_APPS
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = config("DJANGO_SECRET_KEY", cast=str, default=get_random_secret_key())
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = config("DJANGO_DEBUG", cast=bool, default=False)
+
+FRONTEND_URL = config("FRONTEND_URL", cast=str, default="https://djangonext.js")
+
+ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS", cast=list, default=[])
+CSRF_TRUSTED_ORIGINS = config("DJANGO_CSRF_TRUSTED_ORIGINS", cast=list, default=[])
+
+APPEND_SLASH = config("DJANGO_APPEND_SLASH", cast=bool, default=True)
+
+if DEBUG:
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+    CSRF_TRUSTED_ORIGINS = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+    ]
+
+# Application definition
+SITE_ID = 1
+INSTALLED_APPS = INSTALLED_APPS
+AUTH_USER_MODEL = "accounts.MyUser" # accounts.models.MyUser
+
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+ROOT_URLCONF = "company.urls"
+
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
+
+WSGI_APPLICATION = "company.wsgi.application"
+
+
+# Database
+# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+
+DATABASE_URL = config("DATABASE_URL", cast=str, default="")
+if DATABASE_URL:
+    if DATABASE_URL.startswith("postgres://") or DATABASE_URL.startswith("postgresql://"):
+        import dj_database_url
+
+        DATABASES = {
+            "default": dj_database_url.config(
+                default=DATABASE_URL,
+                conn_max_age=60,
+                conn_health_checks=True,
+            )
+        }
+    else:
+        raise Exception("DATABASE_URL only supports PostgreSQL at this time")
+
+# Password validation
+# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
+]
+
+
+# Internationalization
+# https://docs.djangoproject.com/en/5.1/topics/i18n/
+
+LANGUAGE_CODE = "en-us"
+
+TIME_ZONE = "UTC"
+
+USE_I18N = True
+
+USE_TZ = True
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.1/howto/static-files/
+
+STATIC_URL = "static/"
+STATICFILES_BASE_DIR = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [STATICFILES_BASE_DIR]
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+
+### GOOGLE API OAUTH LOGIN
+
+GOOGLE_CLIENT_ID = config("GOOGLE_CLIENT_ID", default="", cast=str)
+GOOGLE_SECRET_KEY = config("GOOGLE_SECRET_KEY", default="", cast=str)
+GOOGLE_AUTH_BASE_URL = FRONTEND_URL
+GOOGLE_AUTH_CALLBACK_PATH = config("GOOGLE_AUTH_CALLBACK_PATH", default='/google/callback')
+print(GOOGLE_AUTH_BASE_URL, GOOGLE_AUTH_CALLBACK_PATH)
+
+
+##### NINJA JWT SETTINGS 
+
+NINJA_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+
+
+
+#### CKEDITOR SETTINGS
+CKEDITOR_ACCESS_CREDS = config("CKEDITOR_ACCESS_CREDS", default="", cast=str)
+===== ./backend/src/company/urls.py =====
+"""
+URL configuration for company project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/5.1/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+
+from django.contrib import admin
+from django.urls import path
+
+from . import views as base_views
+from .api import api
+
+urlpatterns = [
+    path("api/healthz/", base_views.healthz_view),
+    path("api/", api.urls),
+    path("admin/", admin.site.urls),
+]
+
+===== ./backend/src/company/installed.py =====
+# Application definition
+DJANGO_INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.sites",
+]
+
+
+THIRD_PARTY_INSTALLED_APPS = [
+    "corsheaders",
+    "ninja",
+    "ninja_extra",
+    "ninja_jwt",
+]
+
+MY_APPS = [
+    "accounts",
+    "documents",
+    "profiles"
+]
+
+
+INSTALLED_APPS = list(set(DJANGO_INSTALLED_APPS + THIRD_PARTY_INSTALLED_APPS + MY_APPS))
+
+===== ./backend/src/company/views.py =====
+import os
+
+from django.conf import settings
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+
+@csrf_exempt
+def healthz_view(request):
+    query_params = request.GET
+    return JsonResponse(
+        {
+            "status": "ok",
+            "frontend_url": settings.FRONTEND_URL,
+            "query_params": dict(query_params),
+        }
+    )
+
+===== ./backend/src/company/wsgi.py =====
+"""
+WSGI config for company project.
+
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/5.1/howto/deployment/wsgi/
+"""
+
+import os
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "company.settings")
+
+application = get_wsgi_application()
+
+===== ./compose.yaml =====
+services:
+  postgres:
+    image: postgres:17  
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5440:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
