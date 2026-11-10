@@ -114,8 +114,19 @@ def search_document(text: str, query: str, k: int = TOP_K) -> list[str]:
 
 
 def get_outline(text: str) -> list[str]:
-    """Markdown headings (lines starting with '#'), in document order."""
-    return [ln.strip() for ln in text.splitlines() if ln.lstrip().startswith("#")]
+    """Markdown headings (lines starting with '#'), in document order.
+
+    Lines inside ``` fenced code blocks are skipped, so a '# comment' in code
+    is not mistaken for a heading.
+    """
+    headings, in_code = [], False
+    for line in text.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_code = not in_code
+        elif not in_code and stripped.startswith("#"):
+            headings.append(stripped)
+    return headings
 
 
 # ---------- Agent loop ----------
