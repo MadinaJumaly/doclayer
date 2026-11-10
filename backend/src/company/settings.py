@@ -8,6 +8,7 @@ from django.core.management.utils import get_random_secret_key
 
 # uses python-decouple
 # loads environment variables from .env.local and .env
+from decouple import Csv
 from helpers import config
 
 from .installed import INSTALLED_APPS
@@ -27,8 +28,8 @@ DEBUG = config("DJANGO_DEBUG", cast=bool, default=False)
 
 FRONTEND_URL = config("FRONTEND_URL", cast=str, default="https://djangonext.js")
 
-ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS", cast=list, default=[])
-CSRF_TRUSTED_ORIGINS = config("DJANGO_CSRF_TRUSTED_ORIGINS", cast=list, default=[])
+ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS", cast=Csv(), default="")
+CSRF_TRUSTED_ORIGINS = config("DJANGO_CSRF_TRUSTED_ORIGINS", cast=Csv(), default="")
 CORS_ALLOWED_ORIGINS = [FRONTEND_URL]
 
 APPEND_SLASH = config("DJANGO_APPEND_SLASH", cast=bool, default=True)
