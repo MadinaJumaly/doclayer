@@ -18,6 +18,7 @@ import CollaborationCaret from '@tiptap/extension-collaboration-caret';
 
 import { useAuth } from '@/components/authProvider';
 import Toolbar from './Toolbar';
+import docToText from '@/lib/docToText';
 import { buildSchemaExtensions } from '../../../../shared/tiptap-schema';
 
 const schemaExtensions = buildSchemaExtensions({
@@ -86,6 +87,15 @@ const DocEditor = forwardRef(function DocEditor({ initialData, placeholder, onSa
 
 	useImperativeHandle(ref, () => ({
 		getHTML: () => editor?.getHTML() ?? '',
+		// Plain-text view of the document (plus the current selection) for the AI panel.
+		getAIContext: () => {
+			if (!editor) return { text: '', selection: '' };
+			const { from, to, empty } = editor.state.selection;
+			return {
+				text: docToText(editor.getJSON()),
+				selection: empty ? '' : editor.state.doc.textBetween(from, to, '\n'),
+			};
+		},
 	}), [editor]);
 
 	return (

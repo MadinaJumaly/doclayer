@@ -14,6 +14,7 @@ import { useRef, useState } from "react";
 import useSWR from "swr";
 
 const DocEditor = dynamic( () => import( '@/components/editor/DocEditor' ), { ssr: false } );
+const AIPanel = dynamic( () => import( '@/components/editor/AIPanel' ), { ssr: false } );
 
 
 export default function DocDetailPage() {
@@ -101,6 +102,9 @@ export default function DocDetailPage() {
         <Button  ref={submitBtnRef} type='submit'> {saving ? 'Saving' : 'Save'}</Button>
       </form>
       {saving && <p>Saving...</p>}
+      <div className="mt-6">
+        <AIPanel editorRef={editorRef} />
+      </div>
 
     </div>
   </>
